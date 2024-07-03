@@ -1,8 +1,10 @@
 #include <iostream>
 #include <bits/stdc++.h>
-
+#include <map>
+#include <vector>
 using namespace std;
 
+#define make_abs(a) if (a < 0) a *= -1;
 #define loop(i, s) for (ll i = 0; i < s; ++i)
 #define loop_se(i, st, en) for (ll i = st; i <= en; ++i)
 #define ll long long
@@ -13,60 +15,47 @@ using namespace std;
     cout << endl; \
 
 void start() {
+#define READ_FILE
+#ifdef READ_FILE
     FILE* f_in = freopen("input.in", "r", stdin);
     FILE* f_out = freopen("output.out", "w", stdout);
-    ll N, T;
-    cin >> N >> T;
-    
-    vector<ll> prefix(N + 1, 0);
-    vector<ll> origin(N, 0);
-    map<ll, ll> mMap;
-    ll count = 0;
-    mMap[0]++;
-    loop_se(i, 1, N) {
-        ll v; 
-        cin >> v;
-        origin[i - 1] = v;
-        prefix[i] = prefix[i - 1] + v;
-        mMap[prefix[i]]++;
+#endif
 
-        // if (v == T) {
-        //     count++;
-        // }
-    }
-    // cout << endl;
-    print_vt(origin);
-    print_vt(prefix);
+    ll t;
+    cin >> t;
+    while (t--) {
+        ll n;
+        string s;
+        cin >> n >> s;
 
-    for (auto e : mMap) {
-        cout << e.first << ":" << e.second << endl;
-    }
-    loop_se(i, 1, N) {
-        // if ()
-        int value = prefix[i];
-        int getNum = mMap[prefix[i - 1]];
-        count += getNum;    
-        // if (prefix[i] != 0) {
-            if (mMap[prefix[i] - T]) {
-                count += mMap[prefix[i] - T];
-                // mMap[prefix[i] - T] = 0;
-                cout << prefix[i] - T << " -> " << i << endl; 
+        ll ans = 0;
+        vector<ll> pref_map(n + 1, 0);
+        map<ll,ll> pref_mmap;
+        pref_mmap[0]++;
+        loop(i, n) {
+            auto getVal = static_cast<int>(s[i] - '0');
+            // cout << s << " - " << getVal << endl;
+            auto& curMapVal = pref_map[i + 1];
+            curMapVal = pref_map[i] + getVal;
+            auto idx = (i + 1) - curMapVal;
+            if ( idx < 0 ) idx *= -1;
+            // cout << "idx: " << idx << endl;
+            if (pref_mmap[idx]) {
+                ans+= pref_mmap[idx];
             }
-        // }
+
+            pref_mmap[idx]++;
+        }
+
+        cout << ans << endl;
     }
-    cout << count << endl;
+
+
+#ifdef READ_FILE
     fclose(f_in);
     fclose(f_out);
+#endif
 }
-
-/*
-    [0]:    0
-    [2]:    1
-    [1]:    1
-    [4]:    1
-    [9]:    1
-    [7]:    1
-*/
 
 int main() {
     start();
