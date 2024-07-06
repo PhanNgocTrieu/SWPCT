@@ -1,5 +1,5 @@
 /*
-    Links: https://codeforces.com/contest/1398/problem/C
+    Links: https://atcoder.jp/contests/abc125/tasks/abc125_c
 */
 
 #include <iostream>
