@@ -43,24 +43,13 @@ using pls = pair<ll,s>;
 #define debug(x) cerr << #x << ": " << x << endl;
 #define debugas(a,n) for (int i = 0; i < n; ++i) { cerr << #a << "[i]: " << a[i] << " "; } cout << endl;
 #define debugv(v) cerr << #v << "[ "; for (int i = 0; i < (v).size(); ++i) cerr << v[i] << " "; cerr << "]" << endl;
-
+#define debugm(m) cerr << #m << " = [ " << endl; EACH(x, m) { cerr << "(" << x.first << ", " << x.second << ")" << endl;} cerr << "]" << endl;
 
 // #define READ_FILE
 // #define TESTCASE
 
-/*
-    gcd(7,8,6)
-    -> f[] = 7 1 2
-    -> b[] = 2 2 6
-    --------------
-        0: l = inf, r = 2
-        1: l = 7, 2 = 2
-        2: l = 1, 2 = inf
-
-        gcd = 2
- */
-
 void solve() {
+
     ll N;
     cin >> N;
     ll a[N];

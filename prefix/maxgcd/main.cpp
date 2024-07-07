@@ -48,18 +48,6 @@ using pls = pair<ll,s>;
 // #define READ_FILE
 // #define TESTCASE
 
-/*
-    gcd(7,8,6)
-    -> f[] = 7 1 2
-    -> b[] = 2 2 6
-    --------------
-        0: l = inf, r = 2
-        1: l = 7, 2 = 2
-        2: l = 1, 2 = inf
-
-        gcd = 2
- */
-
 void solve() {
     ll N;
     cin >> N;
