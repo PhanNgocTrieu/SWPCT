@@ -1,1 +1,27 @@
-1
+events[ 
+(1, 1, 1)
+(3, 2, 1)
+(4, 1, 0)
+(5, 0, 1)
+(7, 2, 0)
+(9, 0, 0)
+]
+prev: 1 - cur: 1
+alone_time[ 0 0 0 ]
+actives[ 1 ] 
+prev: 3 - cur: 3
+alone_time[ 0 2 0 ]
+actives[ 1 2 ] 
+prev: 4 - cur: 4
+alone_time[ 0 2 0 ]
+actives[ 2 ] 
+prev: 5 - cur: 5
+alone_time[ 0 2 1 ]
+actives[ 0 2 ] 
+prev: 7 - cur: 7
+alone_time[ 0 2 1 ]
+actives[ 0 ] 
+prev: 9 - cur: 9
+alone_time[ 2 2 1 ]
+actives[ ] 
+7

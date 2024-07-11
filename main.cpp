@@ -20,7 +20,7 @@ using mll = map<ll,ll>;
 using umll = unordered_map<ll,ll>;
 using pll = pair<ll,ll>;
 using pls = pair<ll,s>;
-
+using vpll = vector<pair<ll,ll>>;
 
 // loop templates
 #define F_OR(i, a, b, s) for (ll i = (a); (s) > 0 ? i < (b) : i > (b); i += (s))
@@ -48,34 +48,61 @@ using pls = pair<ll,s>;
 #define debugm(m) cout << #m << " = [ " << endl; EACH(x, m) { cout << "(" << x.first << ", " << x.second << ")" << endl;} cout << "]" << endl;
 #define debugmp(m) cout << #m << " = [ " << endl; EACH(x, m) { cout << "(" << x.first << ", {" << x.second.first << ", " << x.second.second << "})" << endl;} cout << "]" << endl;
 #define debugia(a, f, s) cout << "(" << f << "," << s << "): (" << a[f] << ", " << a[s] << ")" << endl;
+#define debugvp(v) cout << #v <<  " [" << endl; EACH(x, v) { cout << " (" << x.first << ", " << x.second << ") " << endl; } cout << "] " << endl;
+#define debugvtp(v) cout << #v << "[ " << endl; EACH(e, v) { cout << "(" << get<0>(e) << ", " << get<1>(e) << ", " << get<2>(e) << ")" << endl; } cout << "]" << endl;
+#define debugset(s) cout << #s << "[ "; EACH(e, s) { cout << e << " "; } cout << "] " << endl;
 
 #define READ_FILE
 // #define TESTCASE
 
 void solve() {
-    ll ans = inf;
-    ll N, needs, s;
-    cin >> N >> needs >> s;
-    vb a(N, true);
-    vll pref(N + 1, 0);
-    map<ll,pair<ll,ll>> m;
-    loop(s) {
-        ll e; cin >> e;
-        a[e - 1] = false;
-    }
-    // debugv(a);
-    loop_se(1, N) {
-        if (i == 0) { continue; }
-        pref[i] = a[i - 1] ? pref[i - 1] : pref[i - 1] + 1;
-    }
-    // debugv(pref);
-    loop(i, needs, pref.size()) {
-        // debugia(pref, i, i - needs + 1);
-        ll getNeed = pref[i] - pref[i - needs + 1];
-        ans = min(ans, getNeed);
+    ll ans = 1;
+    ll N; cin >> N;
+    
+    vector<tuple<ll,ll,bool>> events;
+
+    loop(N) {
+        ll in, out;
+        cin >> in >> out;
+        events.push_back({in, i, true});
+        events.push_back({out,i, false});
     }
 
-    cout << ans << endl;
+    sort(events.begin(), events.end());
+
+    debugvtp(events);
+
+    set<ll> actives;
+    vll alone_time(N);
+    ll prev_time = 0;
+    ll total_time = 0;
+
+    EACH(e, events) {
+        // get time
+        ll cur_time = get<0>(e);
+        
+        if (actives.size() > 0) {
+            total_time += cur_time - prev_time;
+        }
+
+        if (actives.size() == 1) {
+            alone_time[*actives.begin()] += cur_time - prev_time;
+        }
+
+        if (get<2>(e)) {
+            actives.insert(get<1>(e));
+        } else {
+            actives.erase(get<1>(e));
+        }
+
+        prev_time = cur_time;
+
+        cout << "prev: " << prev_time << " - cur: " << cur_time << endl;
+        debugv(alone_time);
+        debugset(actives);
+    }
+    ll min_alone_time = *min_element(alone_time.begin(), alone_time.end());
+    cout << total_time - min_alone_time << endl;
 }
 
 int main() {
@@ -96,7 +123,6 @@ int main() {
     }
 #else
     solve();
-    // cout << __gcd(7, 6) << endl;
 #endif
 
 #ifdef READ_FILE
