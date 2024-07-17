@@ -1,5 +1,5 @@
 /*
-    Links: https://usaco.org/index.php?page=viewproblem2&cpid=715
+    Links: https://cses.fi/problemset/task/1640/
 */
 
 #include <iostream>
