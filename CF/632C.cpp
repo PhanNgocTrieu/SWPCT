@@ -59,7 +59,25 @@ using vpll = vector<pair<ll,ll>>;
 // #define READ_FILE
 // #define TESTCASE
 
+bool cmp(const s& a, const s& b) {
+    return a + b < b + a;
+};
+
 void solve() {
+#if 0
+    ll N;
+    cin >> N;
+    string *s = new string[N];
+    loop(N) {
+        cin >> s[i];
+    }
+    sort(s, s + N, cmp);
+
+    loop(N) {
+        cout << s[i];
+    }
+    cout << endl;
+#endif
     ll N;
     cin >> N;
     auto cmp = [](const s& a, const s& b){
