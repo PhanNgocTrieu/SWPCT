@@ -1,5 +1,5 @@
 /*
-    Links: https://cses.fi/problemset/task/1640/
+    Links: https://usaco.org/index.php?page=viewproblem2&cpid=715
 */
 
 #include <iostream>
@@ -12,12 +12,16 @@ using namespace std;
 #define inf 0x3f3f3f3f
 #define infll 0x3f3f3f3f3f3f3f
 #define ll long long
+#define v vector
 
-using s = std:: string;
+using s = std::string;
 using vll = vector<ll>;
 using vb = vector<bool>;
+using vs = vector<string>;
 using mll = map<ll,ll>;
 using umll = unordered_map<ll,ll>;
+using mcs = map<char, string>;
+using mcvs = map<char, v<string>>;
 using pll = pair<ll,ll>;
 using pls = pair<ll,s>;
 using vpll = vector<pair<ll,ll>>;
@@ -42,10 +46,9 @@ using vpll = vector<pair<ll,ll>>;
         cout << "(" << v.first << ", " << v.second  << ")" << endl;
 
 // debug templates
-#define debugln cout << __FUNCTION__ << __LINE__ << endl;
 #define debug(x) cout << #x << ": " << x << endl;
 #define debugas(a,n) for (int i = 0; i < n; ++i) { cout << #a << "[i]: " << a[i] << " "; } cout << endl;
-#define debugv(v) cout << #v << " [ "; for (int i = 0; i < (v).size(); ++i) cout << v[i] << " "; cout << "]" << endl;
+#define debugv(v) cout << #v << "[ "; for (int i = 0; i < (v).size(); ++i) cout << v[i] << " "; cout << "]" << endl;
 #define debugm(m) cout << #m << " = [ " << endl; EACH(x, m) { cout << "(" << x.first << ", " << x.second << ")" << endl;} cout << "]" << endl;
 #define debugmp(m) cout << #m << " = [ " << endl; EACH(x, m) { cout << "(" << x.first << ", {" << x.second.first << ", " << x.second.second << "})" << endl;} cout << "]" << endl;
 #define debugia(a, f, s) cout << "(" << f << "," << s << "): (" << a[f] << ", " << a[s] << ")" << endl;
@@ -53,57 +56,39 @@ using vpll = vector<pair<ll,ll>>;
 #define debugvtp(v) cout << #v << "[ " << endl; EACH(e, v) { cout << "(" << get<0>(e) << ", " << get<1>(e) << ", " << get<2>(e) << ")" << endl; } cout << "]" << endl;
 #define debugset(s) cout << #s << "[ "; EACH(e, s) { cout << e << " "; } cout << "] " << endl;
 
-// #define READ_FILE
-// #define TESTCASE 
+#define READ_FILE
+// #define TESTCASE
 
-struct ppair {
-    ll value;
-    ll pos;
-    bool operator < (const ppair& other) {
-		if (this->value == other.value) { return this->value < other.value; }
-        return this->value < other.value;
-    }
+struct Mountain {
+	int start, end;
 };
 
+bool operator<(const Mountain &m1, const Mountain &m2) {
+	// sort by start and tiebreak by putting the larger mountains first
+	if (m1.start == m2.start) { return m1.end > m2.end; }
+	return m1.start < m2.start;
+}
+
 void solve() {
-    ll n, x;
-    cin >> n >> x;
-    vector<ppair> vp;
-	map<ll, vector<ppair>> mp;
-    for (int i = 0; i < n; ++i) {
-        ll v; cin >> v;
-        vp.push_back({
-            v,
-            i + 1
-        });
-		auto foundIt = mp.find(x - v);
-		if (foundIt != mp.end()) {
-			cout << foundIt->second[0].pos << " " << i << endl;
-			return;
+    int mountain_num;
+	cin >> mountain_num;
+
+	vector<Mountain> mountains;
+	for (int m = 0; m < mountain_num; m++) {
+		int x, y;
+		cin >> x >> y;
+		mountains.push_back({x - y, x + y});
+	}
+	sort(mountains.begin(), mountains.end());
+	int rightmost = -1;
+	int visible_num = 0;
+	for (const Mountain &m : mountains) {
+		if (m.end > rightmost) {
+			visible_num++;
+			rightmost = m.end;
 		}
-		mp[x - v].push_back({v, x + 1});
-    }
-	cout << "IMPOSSIBLE" << endl;
-    // sort(vp.begin(), vp.end());
-    // ll left = 0, right = n - 1;
-    // bool found = false;
-    // while (left < right) {
-    //     auto val = vp[left].value + vp[right].value;
-    //     if (val == x) {
-    //         // cout << vp[left].pos << " " << vp[right].pos << endl;
-    //         found = true;
-    //         break;
-    //     }
-    //     else if (val < x) {
-    //         left++;
-    //     }
-    //     else {
-    //         right--;
-    //     }
-    // }
-    // if (!found) {
-    //     cout << "IMPOSSIBLE" << endl;
-    // }
+	}
+    cout << visible_num << endl;
 }
 
 int main() {
@@ -112,8 +97,8 @@ int main() {
     cout.tie(0);
 
 #ifdef READ_FILE
-    FILE* f_in = freopen("input.in", "r", stdin);
-    FILE* f_out = freopen("output.out", "w", stdout);
+    FILE* f_in = freopen("mountains.in", "r", stdin);
+    FILE* f_out = freopen("mountains.out", "w", stdout);
 #endif
 
 #ifdef TESTCASE
