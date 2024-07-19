@@ -1,5 +1,6 @@
 [Done]
-	Stack: Remove K Digits
+	
+ 	Stack: Remove K Digits
 	https://leetcode.com/problems/remove-k-digits/
 	https://leetcode.com/problems/simplify-path/
 	Heap: https://leetcode.com/problems/ugly-number-ii/
