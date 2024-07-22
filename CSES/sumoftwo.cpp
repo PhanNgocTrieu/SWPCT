@@ -1,5 +1,5 @@
 /*
-    Links: https://cses.fi/problemset/task/1640/
+    Links: https://usaco.org/index.php?page=viewproblem2&cpid=715
 */
 
 #include <iostream>
@@ -42,7 +42,8 @@ using vpll = vector<pair<ll,ll>>;
         cout << "(" << v.first << ", " << v.second  << ")" << endl;
 
 // debug templates
-#define debugln cout << __FUNCTION__ << __LINE__ << endl;
+#define debugmsg(m) cout << m << endl;
+#define debugln cout << __FUNCTION__ << " : " << __LINE__ << endl;
 #define debug(x) cout << #x << ": " << x << endl;
 #define debugas(a,n) for (int i = 0; i < n; ++i) { cout << #a << "[i]: " << a[i] << " "; } cout << endl;
 #define debugv(v) cout << #v << " [ "; for (int i = 0; i < (v).size(); ++i) cout << v[i] << " "; cout << "]" << endl;
@@ -52,54 +53,48 @@ using vpll = vector<pair<ll,ll>>;
 #define debugvp(v) cout << #v <<  " [" << endl; EACH(x, v) { cout << " (" << x.first << ", " << x.second << ") " << endl; } cout << "] " << endl;
 #define debugvtp(v) cout << #v << "[ " << endl; EACH(e, v) { cout << "(" << get<0>(e) << ", " << get<1>(e) << ", " << get<2>(e) << ")" << endl; } cout << "]" << endl;
 #define debugset(s) cout << #s << "[ "; EACH(e, s) { cout << e << " "; } cout << "] " << endl;
+#define debugvvs(vvs) \
+    cout<< #vvs << " [ " << endl;  \
+    EACH(vs, vvs) {     \
+        cout << "\t\t("; \
+        EACH(s, vs)  { \
+            cout << s << ", "; \
+        }   \
+        cout << ")" << endl;    \
+    }   \
+    cout << "]" << endl;
 
 // #define READ_FILE
 // #define TESTCASE 
 
-struct ppair {
-    ll value;
-    ll pos;
-    bool operator < (const ppair& other) {
-        return this->value <= other.value;
-    }
-};
 
 void solve() {
-    ll n, x;
-    cin >> n >> x;
-    vector<ppair> vp;
-    for (int i = 0; i < n; ++i) {
+    ll N, T;
+    cin >> N >> T;
+    vpll nums;
+    loop(N) {
         ll v; cin >> v;
-        vp.push_back({
-            v,
-            i + 1
-        });
+        nums.push_back({v, i + 1});
     }
+    sort(nums.begin(), nums.end());
+    // debugvp(nums);
 
-    sort(vp.begin(), vp.end());
-    for (auto v : vp) {
-        cout << v.pos << ": " << v.value << endl;
-    }
-
-    ll left = 0, right = n - 1;
-    bool found = false;
+    ll left = 0;
+    ll right = N - 1;
     while (left < right) {
-        auto val = vp[left].value + vp[right].value;
-        if (val == x) {
-            cout << vp[left].pos << " " << vp[right].pos << endl;
-            found = true;
-            break;
+        ll tmp = nums[left].first + nums[right].first;
+        if (tmp == T) {
+            cout << nums[left].second << " " << nums[right].second<< endl;
+            return;
         }
-        else if (val < x) {
-            left++;
-        }
-        else {
+        else if (tmp > T) {
             right--;
         }
+        else if (tmp < T) {
+            left++;
+        }
     }
-    if (!found) {
-        cout << "IMPOSSIBLE" << endl;
-    }
+    cout << "IMPOSSIBLE" << endl;
 }
 
 int main() {
