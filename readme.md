@@ -1,3 +1,19 @@
+[Theory]
+- DSA:
+	1. https://leetcode.com/problems/flood-fill/    
+	2. https://leetcode.com/problems/number-of-islands/  
+	3. https://leetcode.com/problems/detect-cycles-in-2d-grid/     
+	4. https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/   
+	5. https://leetcode.com/problems/as-far-from-land-as-possible/  
+	6. https://leetcode.com/problems/path-sum/
+	7. https://leetcode.com/problems/find-if-path-exists-in-graph/
+	8. https://leetcode.com/problems/course-schedule/   
+	9. https://www.codechef.com/problems/FIRESC
+	10. https://www.spoj.com/problems/CAM5/
+	11. https://www.spoj.com/problems/PT07Y/ 
+	12. https://www.spoj.com/problems/ELEVTRBL/ 
+- Graph (DFS, BFS):
+
 [Done]
 	
  	Stack: Remove K Digits
