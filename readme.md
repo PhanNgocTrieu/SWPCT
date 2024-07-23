@@ -1,5 +1,12 @@
+https://poe.com/
+
 [Theory]
 - DSA:
+  	1. https://leetcode.com/problems/find-the-most-competitive-subsequence/
+	2. https://leetcode.com/problems/find-the-winner-of-the-circular-game/
+	3. https://leetcode.com/problems/top-k-frequent-words/
+	
+- Graph (DFS, BFS):
 	1. https://leetcode.com/problems/flood-fill/    
 	2. https://leetcode.com/problems/number-of-islands/  
 	3. https://leetcode.com/problems/detect-cycles-in-2d-grid/     
@@ -11,8 +18,35 @@
 	9. https://www.codechef.com/problems/FIRESC
 	10. https://www.spoj.com/problems/CAM5/
 	11. https://www.spoj.com/problems/PT07Y/ 
-	12. https://www.spoj.com/problems/ELEVTRBL/ 
-- Graph (DFS, BFS):
+	12. https://www.spoj.com/problems/ELEVTRBL/
+
+- Exsautive Search:
+	https://www.codechef.com/problems/TRICOIN
+	https://www.codechef.com/problems/COINS
+	https://www.codechef.com/problems/FIRSTANDLAST
+	https://leetcode.com/problems/letter-combinations-of-a-phone-number/
+	https://leetcode.com/problems/generate-parentheses/ 
+- Binary search & Greedy:
+  	[Greedy]
+		https://leetcode.com/problems/array-partition/ (High Recommend)
+		https://leetcode.com/problems/lemonade-change/ (High Recommend)
+		https://leetcode.com/problems/maximum-number-of-coins-you-can-get/ (High Recommend)
+		https://leetcode.com/problems/task-scheduler/ 
+		https://leetcode.com/problems/broken-calculator/ 
+		
+	[Binary Search]
+		https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/ (High Recommend)
+		https://leetcode.com/problems/sqrtx/ (High Recommend)
+		https://leetcode.com/problems/arranging-coins/  (High Recommend)
+		https://leetcode.com/problems/maximum-tastiness-of-candy-basket/ (High Recommend)
+		https://leetcode.com/problems/minimum-speed-to-arrive-on-time/ 
+		https://codejam.lge.com/contest/problem/1071/4 (Advanced)
+		
+	[Additional Practice]
+		https://codepro.lge.com/exam/19/overseas-questions-for-previous-test/quiz/4
+		https://codepro.lge.com/exam/19/overseas-questions-for-previous-test/quiz/5
+		https://codejam.lge.com/problem/20917
+- 
 
 [Done]
 	
@@ -83,4 +117,35 @@
 	http://lgedvoj.lge.com/problem/cardgame
 	8. Binary Search: Socially Distancing
 	https://codejam.lge.com/problem/20917
+
+
+[Practice]
+
+	Created by HOANG BA NGUYEN hoang8.nguyen, last modified on 2024/01/31
+	Tactic:
+	There are 3 problems on test (pre-test and real test):
+	Problem 1: Easy (30)
+	Problem 2: Medium (30)
+	Problem 3: Hard (40)
+	Need to get 70 points
+	=> Basic tactic: solve full Problem 1, problem 2 and a part of problem 3. Sometimes, it's better to solve problem 1 and 3 only.
+	How to solve a problem:
+		Make sure we understand problem correctly!!!
+		Each problem has TCs. Higher passed TCs, higher point
+		Good logic
+		Satisfy time and memory => Need understand about Time complexity & Memory complexity.
+	Example:
+	https://codepro.lge.com/exam/19/overseas-questions-for-previous-test/quiz/1
+	https://codepro.lge.com/exam/19/overseas-questions-for-previous-test/quiz/2
+	Good resources to practice:
+	codepro.lge.com (pass: lset2022)
+	leetcode.com
 	
+	Tips to remember:
+		library all-in-one: bits/stdc++.h
+		how to use sort()
+		Understand much about BFS
+		how to use next_permutation() to generate all permutations
+		how to generate all subsets of a set
+		Understand about bitwise
+		Know how to implementation backtracking 
