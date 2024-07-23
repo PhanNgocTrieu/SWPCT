@@ -1,3 +1,6 @@
+/*
+	https://cses.fi/problemset/task/1660/
+*/
 //BeginCodeSnip{C++ Short Template}
 #include <bits/stdc++.h> // see /general/running-code-locally
 using namespace std;
