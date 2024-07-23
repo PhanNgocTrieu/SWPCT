@@ -1,5 +1,5 @@
 /*
-    Links: https://cses.fi/problemset/task/1640/
+    https://cses.fi/problemset/task/1641/
 */
 
 #include <iostream>
