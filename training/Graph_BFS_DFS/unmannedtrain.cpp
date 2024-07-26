@@ -50,13 +50,14 @@ void floodFillUpdate(const pair<int,int> position, vector<vector<int>>& grid, in
         for (int i = 0; i < 4; ++i) {
             int newR = ps.first + dr[i];
             int newC = ps.second + dc[i];
+            cout << "(R,C): (" << newR << ":" << newC << ")" << endl;
             if (newR < 0 || newR >= grid.size()) continue;
             if (newC < 0 || newC >= grid[0].size()) continue;
 
             if (grid[newR][newC] == 1
             // && !vs[newR][newC]
             ) {
-                cout << "(R,C): (" << newR << "," << newC << ")\n";
+                cout << "\t (R,C): (" << newR << "," << newC << ")\n";
                 ans = min(ans, grid[newR][newC] - 1);
                 break;
             }
@@ -67,9 +68,21 @@ void floodFillUpdate(const pair<int,int> position, vector<vector<int>>& grid, in
             }
         }
     }
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            cout << grid[i][j] << " ";
+        }
+        cout << endl;
+    }
 }
 
 int main() {
+#define READ_FILE
+#ifdef READ_FILE
+    FILE* f_in = freopen("pairup.in", "r", stdin);
+    FILE* f_out = freopen("pairup.out", "w", stdout);
+#endif
 	long long n,m;
 	queue<pair<int, int>> pos_q;
 	cin >> n >> m;
@@ -112,5 +125,10 @@ int main() {
 	
 	cout << "ans: " << ans << endl;
 	
+    
+#ifdef READ_FILE
+    fclose(f_in);
+    fclose(f_out);
+#endif
 	return 0;
 }
