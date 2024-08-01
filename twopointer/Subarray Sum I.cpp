@@ -38,7 +38,6 @@ int main() {
 		// Finding the maximum right for which cur is less than t.
 		while (right < n) {
 			cur += nums[right++];
-			// Subtracting the exceeded book from cur.
             if (cur == t) {
                 ans++;
             }
