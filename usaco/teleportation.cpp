@@ -6,9 +6,9 @@ using namespace std;
 void solve() {
     ll a, b, x, y;
     cin >> a >> b >> x >> y;
-    int res = x > y ? abs(y - a) + abs(b - x) : abs(x - a) + abs(b - y);
-    cout << res << endl;
-
+    ll res = x > y ? abs(y - a) + abs(b - x) : abs(x - a) + abs(b - y);
+    ll without = abs(b - a);
+    cout << min(res, without) << endl;
 }
 
 int main() {
