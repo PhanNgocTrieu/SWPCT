@@ -3,58 +3,55 @@
 #include <vector>
 using namespace std;
 
-// class Solution {
-// public:
-//     vector<vector<string>> groupAnagrams(const vector<string>& strs) {
-//         map<string, vector<string>> hash;
-//         vector<vector<string>> res;
-//         for (int i = 0; i < strs.size(); ++i) {
-//             string get = strs[i];
-//             sort(get.begin(), get.end());
-//             hash[get].push_back(strs[i]);
-//         }
-//         for (map<string, vector<string>>::iterator itr = hash.begin();
-//         itr != hash.end(); itr++) {
-//             res.push_back(itr->second);
-//         }
-//         return res;
-//     }
-// };
-
-
 class Solution {
-    // struct pair {
-    //     int key;
-    //     int nums;
-    // };
+    public:
+        string minWindow(string s, string t) {
+            string res = "";
+            unordered_map<char, int> hash;
+            for (auto c : t) {
+                hash[c]++;
+            }
 
-    // bool cmp(const pair& a, const pair& b) {
-    //     return a.nums > b.nums;
-    // }
-public:
-    vector<int> topKFrequent(const vector<int>& nums, int k) {
-        vector<int> hash(1005, 0);
-        vector<int> res;
-        for (auto e : nums) {
-            hash[e]++;
-            cout << e << ": " << hash[e] << endl;
-        }
-        sort(hash.begin(), hash.end(), [](int a, int b) {
-            return a >= b;
-        });
-        cout << hash.size() << endl;
-        for (int i = hash.size() - 1; i >= 0; i--) {
-            // cout << i << ": " << hash[i] << endl;
-            if (k <= 0) {
-                break;
+            int left = 0;
+            int right = 1;
+            int index = 0;
+            int size = s.length();
+            while (
+                left < size
+                && index < size
+            ) {
+                auto get = s[index];
+                auto cpy = hash;
+                int _len = t.length();
+                if (find(hash.begin(), hash.end()) != hash.end()) {
+                    left = index;
+                    right = index + 1;
+                    hash[get]--;
+                    while (right < size) {
+                        if (!_len) {
+                            string tmp = s.substr(s.begin() + left, right - left);
+                            if (res == "") {
+                                res = tmp;
+                            }
+                            else {
+                                res = res.length() < tmp.length() ? res : tmp;
+                            }
+                            break;
+                        }
+                        auto get_r = s[right];
+                        
+                        if (hash[get_r]) {
+                            hash[get]--;
+                            _len--;
+                        }
+                        right++;
+                    }
+                }
+
+                index++;
             }
-            if (hash[i] != 0) {
-                res.push_back(i);
-                k--;
-            }
+            return res;
         }
-        return res;
-    }
 };
 
 
