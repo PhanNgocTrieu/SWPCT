@@ -65,45 +65,8 @@ struct ppair {
     }
 };
 
-void solve() {
-    ll n, x;
-    cin >> n >> x;
-    vector<ppair> vp;
-	map<ll, vector<ppair>> mp;
-    for (int i = 0; i < n; ++i) {
-        ll v; cin >> v;
-        vp.push_back({
-            v,
-            i + 1
-        });
-		auto foundIt = mp.find(x - v);
-		if (foundIt != mp.end()) {
-			cout << foundIt->second[0].pos << " " << i << endl;
-			return;
-		}
-		mp[x - v].push_back({v, x + 1});
-    }
-	cout << "IMPOSSIBLE" << endl;
-    // sort(vp.begin(), vp.end());
-    // ll left = 0, right = n - 1;
-    // bool found = false;
-    // while (left < right) {
-    //     auto val = vp[left].value + vp[right].value;
-    //     if (val == x) {
-    //         // cout << vp[left].pos << " " << vp[right].pos << endl;
-    //         found = true;
-    //         break;
-    //     }
-    //     else if (val < x) {
-    //         left++;
-    //     }
-    //     else {
-    //         right--;
-    //     }
-    // }
-    // if (!found) {
-    //     cout << "IMPOSSIBLE" << endl;
-    // }
+void process() {
+    
 }
 
 int main() {
@@ -120,10 +83,10 @@ int main() {
     ll ts;
     cin >> ts;
     while (ts--) {
-        solve();
+        process();
     }
 #else
-    solve();
+    process();
 #endif
 
 #ifdef READ_FILE
