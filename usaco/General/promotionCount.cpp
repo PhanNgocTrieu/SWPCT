@@ -1,5 +1,5 @@
 /*
-    Links: https://usaco.org/index.php?page=viewproblem2&cpid=987
+    Links: https://usaco.org/index.php?page=viewproblem2&cpid=591
 */
 
 #include <iostream>
@@ -57,23 +57,29 @@ using vpll = vector<pair<ll,ll>>;
 // #define TESTCASE 
 
 void process() {
-    ll _len, k;
-    cin >> _len, k;
-    int word_length = 0;
-    for (int i = 0; i < _len; ++i) {
-        string word;
-        cin >> word;
-        word_length += word.length();
-        if (word_length <= k) {
-            // print to seperate the word
-            if (i != 0) { cout << ' '; }
-            cout << word;
-        }
-        else {
-            cout << "\n" << word;
-            word_length = word.length();
-        }
-    }
+    /*
+        Algorithm:
+                before      after
+                Bb          Ba
+                Sb          Sa
+                Gb          Ga
+                Pb          Pa
+            
+            Promoted participants:
+            G -> P: Pa - Pb
+            S -> G: (Pa + Ga) - (Pb + Gb)
+            B -> S: (Pa + Ga + Sa) - (Pb + Gb + Sb)
+     */
+
+    ll bb, ba, sb, sa, gb, ga, pb, pa;
+    cin >> bb >> ba >> sb >> sa >> gb >> ga >> pb >> pa;
+    cout << (pa + ga + sa) - (pb + gb + sb)
+        << endl 
+        << (pa + ga) - (pb + gb)
+        << endl
+        <<(pa - pb)
+        << endl;
+    
 }
 
 int main() {
@@ -82,8 +88,8 @@ int main() {
     cout.tie(0);
 
 #ifdef READ_FILE
-    FILE* f_in = freopen("word.in", "r", stdin);
-    FILE* f_out = freopen("word.out", "w", stdout);
+    FILE* f_in = freopen("promote.in", "r", stdin);
+    FILE* f_out = freopen("promote.out", "w", stdout);
 #endif
 
 #ifdef TESTCASE
@@ -102,29 +108,3 @@ int main() {
 #endif
     return 0;
 }
-
-
-// int main() {
-// 	freopen("word.in", "r", stdin);
-// 	freopen("word.out", "w", stdout);
-
-// 	int N, K;
-// 	cin >> N >> K;
-
-// 	// Number of characters on the current line (not including spaces)
-// 	int word_len = 0;
-// 	for (int i = 0; i < N; i++) {
-// 		string word;
-// 		cin >> word;
-// 		// Get the new length if we were to put the word on the current line.
-// 		word_len += word.length();
-// 		if (word_len <= K) {
-// 			// Print a space if it isn't the first word.
-// 			if (i != 0) { cout << ' '; }
-// 			cout << word;
-// 		} else {
-// 			cout << "\n" << word;
-// 			word_len = word.length();
-// 		}
-// 	}
-// }
