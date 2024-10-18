@@ -96,19 +96,30 @@ int bfs() {
 }
 
 void process() {
-    for (int i = 0; i < 10; ++i) {
-        for (int j = 0; j < 10; ++j) {
-            cin >> grid[i][j];
-            if (grid[i][j] == 'B') {
-                B = {i,j};
-            }
-            else if (grid[i][j] == 'L') {
-                L = {i, j};
+    ll m, n, k;
+    cin >> m >> n >> k;
+    // cout << m << " " << n << " " << k << endl;
+    vector<string> rows(m);
+    loop(i, 0, m) {
+        cin >> rows[i];
+    }
+    vector<string> res;
+
+    for (auto& r : rows) {
+        string temp = "";
+        for (auto c : r) {
+            loop(i, 0, k) {
+                temp += c;
             }
         }
+        loop(i, 0, k) {
+            res.push_back(temp);
+        }
     }
-    auto getRes = bfs();
-    cout << getRes << endl;
+
+    for (auto r : res) {
+        cout << r << endl;
+    }
 }
 
 int main() {
@@ -117,8 +128,8 @@ int main() {
     cout.tie(0);
 
 #ifdef READ_FILE
-    FILE* f_in = freopen("input.in", "r", stdin);
-    FILE* f_out = freopen("output.out", "w", stdout);
+    FILE* f_in = freopen("cowsignal.in", "r", stdin);
+    FILE* f_out = freopen("cowsignal.out", "w", stdout);
 #endif
 
 #ifdef TESTCASE
@@ -137,29 +148,3 @@ int main() {
 #endif
     return 0;
 }
-
-
-// int main() {
-// 	freopen("word.in", "r", stdin);
-// 	freopen("word.out", "w", stdout);
-
-// 	int N, K;
-// 	cin >> N >> K;
-
-// 	// Number of characters on the current line (not including spaces)
-// 	int word_len = 0;
-// 	for (int i = 0; i < N; i++) {
-// 		string word;
-// 		cin >> word;
-// 		// Get the new length if we were to put the word on the current line.
-// 		word_len += word.length();
-// 		if (word_len <= K) {
-// 			// Print a space if it isn't the first word.
-// 			if (i != 0) { cout << ' '; }
-// 			cout << word;
-// 		} else {
-// 			cout << "\n" << word;
-// 			word_len = word.length();
-// 		}
-// 	}
-// }
