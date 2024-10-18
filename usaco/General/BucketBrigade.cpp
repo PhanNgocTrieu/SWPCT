@@ -117,8 +117,8 @@ int main() {
     cout.tie(0);
 
 #ifdef READ_FILE
-    FILE* f_in = freopen("input.in", "r", stdin);
-    FILE* f_out = freopen("output.out", "w", stdout);
+    FILE* f_in = freopen("buckets.in", "r", stdin);
+    FILE* f_out = freopen("buckets.out", "w", stdout);
 #endif
 
 #ifdef TESTCASE
@@ -137,29 +137,3 @@ int main() {
 #endif
     return 0;
 }
-
-
-// int main() {
-// 	freopen("word.in", "r", stdin);
-// 	freopen("word.out", "w", stdout);
-
-// 	int N, K;
-// 	cin >> N >> K;
-
-// 	// Number of characters on the current line (not including spaces)
-// 	int word_len = 0;
-// 	for (int i = 0; i < N; i++) {
-// 		string word;
-// 		cin >> word;
-// 		// Get the new length if we were to put the word on the current line.
-// 		word_len += word.length();
-// 		if (word_len <= K) {
-// 			// Print a space if it isn't the first word.
-// 			if (i != 0) { cout << ' '; }
-// 			cout << word;
-// 		} else {
-// 			cout << "\n" << word;
-// 			word_len = word.length();
-// 		}
-// 	}
-// }
