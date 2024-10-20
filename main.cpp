@@ -59,6 +59,11 @@ struct Point {
     int x, y;
 };
 
+struct pair_t {
+    int first;
+    int second;
+};
+
 vector<vector<char>> grid(10, vector<char>(10));
 Point B;
 Point L;
@@ -96,30 +101,45 @@ int bfs() {
 }
 
 void process() {
-    ll m, n, k;
-    cin >> m >> n >> k;
-    // cout << m << " " << n << " " << k << endl;
-    vector<string> rows(m);
-    loop(i, 0, m) {
-        cin >> rows[i];
-    }
-    vector<string> res;
+    /*
+        Roads: [1 --- 100]
+        Divided N segments:
+            {length, limited speed}
 
-    for (auto& r : rows) {
-        string temp = "";
-        for (auto c : r) {
-            loop(i, 0, k) {
-                temp += c;
-            }
+
+            [1] [2] [3] ... [100]
+        Please determine the maximum amount over the speed limit that Bessie travels during any part of her journey.
+     */
+    ll N,M;
+    cin >> N >> M;
+    int speedFault = 0;
+    vector<int> limits(100);
+    vector<int> bessies(100);
+    int start = 0;
+    for (int i = 0; i < N; ++i) {
+        pair_t t;
+        cin >> t.first >> t.second;
+        for (int j = start; j < start + t.first; ++j) {
+            limits[j] = t.second;
         }
-        loop(i, 0, k) {
-            res.push_back(temp);
-        }
+        start += t.first;
     }
 
-    for (auto r : res) {
-        cout << r << endl;
+    start = 0;
+    for (int i = 0; i < M; ++i) {
+        pair_t t;
+        cin >> t.first >> t.second;
+        for (int j = start; j < start + t.first; ++j) {
+            bessies[j] = t.second;
+        }
+        start += t.first;
     }
+
+    for (int i = 0; i < 100; i++) {
+        speedFault = max(speedFault, bessies[i] - limits[i]);
+    }
+
+    cout << speedFault << endl;
 }
 
 int main() {
@@ -128,8 +148,8 @@ int main() {
     cout.tie(0);
 
 #ifdef READ_FILE
-    FILE* f_in = freopen("cowsignal.in", "r", stdin);
-    FILE* f_out = freopen("cowsignal.out", "w", stdout);
+    FILE* f_in = freopen("speeding.in", "r", stdin);
+    FILE* f_out = freopen("speeding.out", "w", stdout);
 #endif
 
 #ifdef TESTCASE
