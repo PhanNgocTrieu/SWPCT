@@ -103,70 +103,13 @@ int bfs() {
             }
         }
     }
-
     return dist[L.x][L.y] - 1;
-}
-
-// #define SWEEP
-void sweep() {
-    int N; cin >> N;
-    vector<int> timeline(1005, 0);
-    int bucks = 0;
-    for (int i = 0; i < N; ++i) {
-        int s, t, b;
-        cin >> s >> t >> b;
-        timeline[s] += b;
-        timeline[t] -= b;
-    }
-
-    int curBuck = 0;
-    int maxBuck = 0;
-    for (auto i = 1; i < 1000; ++i) {
-        curBuck += timeline[i];
-        maxBuck = max(maxBuck, curBuck); 
-    }
-    cout << maxBuck << endl;
 }
 
 
 // #define READ_FILE
 void process() {
-    
-#ifndef SWEEP
-    /*
-        4 cows
-            s   t   b
-            4  10   1
-            8  13   3
-            2   6   2
-            5  12   2
-
-        Timeline: [...2....4.5.6..8.....................................................................]
-        Cows:     [...1....2.3.1........................................................................]
-        Neede b:  [...2....1.2.1..3.....................................................................]
-        Buckets:  [...2....3.5.1........................................................................]
-    */
-
-    // brute force
-    int N; cin >> N;
-    vector<cows_t> cows(N);
-    vector<int> timeline(1005, 0);
-    int bucks = 0;
-    for (int i = 0; i < N; ++i) {
-        int s, t, b;
-        cin >> s >> t >> b;
-        for (int i = s; i <= t; ++i) {
-            timeline[i] += b;
-        }
-    }
-
-    for (auto i = 1; i < 1000; ++i) {
-        bucks = max(bucks, timeline[i]); 
-    }
-    cout << bucks << endl;
-#else
-    sweep();
-#endif
+   
 }
 
 int main() {
