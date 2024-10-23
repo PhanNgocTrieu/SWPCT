@@ -54,6 +54,8 @@ using vpll = vector<pair<ll,ll>>;
 #define debugset(s) cout << #s << "[ "; EACH(e, s) { cout << e << " "; } cout << "] " << endl;
 
 #define READ_FILE
+#define pb push_back
+#define ppb pop_back
 // #define TESTCASE 
 struct Point {
     int x, y;
@@ -62,6 +64,11 @@ struct Point {
 struct pair_t {
     int first;
     int second;
+};
+
+struct cows_t {
+    int id;
+    int pos{-1};
 };
 
 vector<vector<char>> grid(10, vector<char>(10));
@@ -102,44 +109,84 @@ int bfs() {
 
 void process() {
     /*
-        Roads: [1 --- 100]
-        Divided N segments:
-            {length, limited speed}
+        Bovine Shuffle
+            N cows ---- in some order (not sorted)
+            -> performing three shuffles in a row
+            -> N cows will be reordered
+
+                Mark positions for cows (1 ... N)
+            
+            first cow: lineup in position 1
+            second cow: lineup in position 2
+            ...
+            up to N
 
 
-            [1] [2] [3] ... [100]
-        Please determine the maximum amount over the speed limit that Bessie travels during any part of her journey.
+            A shuffle is described with N numbers, a1...aN  where the cow in position i mopves to position ai during the shuffle
+                ai (1...N)
+
+            
+
+            N + 1
+            pos:
+                [0] [1] [2] [3] [4] [5]
+                     1   3   4   5   2
+
+                    table:
+                        1 -> 1
+                        2 -> 3
+                        3 -> 4
+                        4 -> 5
+                        5 -> 2
+
+                        1 <- 1
+                        3 <- 2
+                        4 <- 3
+                        5 <- 4
+                        2 <- 5
+    
      */
-    ll N,M;
-    cin >> N >> M;
-    int speedFault = 0;
-    vector<int> limits(100);
-    vector<int> bessies(100);
-    int start = 0;
+
+    int N; cin >> N;
+    vector<int> pos(105, -1);
+    vector<cows_t> ids(N, cows_t{});
+    vector<int> res(N, -1);
+    // position input
+    for (int i = 1; i < N + 1; ++i) {
+        int v; cin >> v;
+        pos[v] = i;
+    }
+    
+    // id inputs
     for (int i = 0; i < N; ++i) {
-        pair_t t;
-        cin >> t.first >> t.second;
-        for (int j = start; j < start + t.first; ++j) {
-            limits[j] = t.second;
+        int id; cin >> id;
+        ids[i].id = id;
+        ids[i].pos = i + 1;
+    }
+
+    
+
+    // for (int i = 1; i < N + 1; ++i) {
+    //     cout << "i: " << i << " - pos: " << pos[i] << endl;
+    // }
+    // cout << endl;
+
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < N; ++j) {
+            // cout << ids[j].pos << " to ";
+            ids[j].pos = pos[ids[j].pos];
+            // cout << ids[j].pos << endl;
         }
-        start += t.first;
     }
 
-    start = 0;
-    for (int i = 0; i < M; ++i) {
-        pair_t t;
-        cin >> t.first >> t.second;
-        for (int j = start; j < start + t.first; ++j) {
-            bessies[j] = t.second;
-        }
-        start += t.first;
+    sort(ids.begin(), ids.end(), [](const cows_t& a, const cows_t& b){
+        return a.pos < b.pos;
+    });
+
+    for (auto c : ids) {
+        cout << c.id << endl;
     }
 
-    for (int i = 0; i < 100; i++) {
-        speedFault = max(speedFault, bessies[i] - limits[i]);
-    }
-
-    cout << speedFault << endl;
 }
 
 int main() {
@@ -148,8 +195,8 @@ int main() {
     cout.tie(0);
 
 #ifdef READ_FILE
-    FILE* f_in = freopen("speeding.in", "r", stdin);
-    FILE* f_out = freopen("speeding.out", "w", stdout);
+    FILE* f_in = freopen("shuffle.in", "r", stdin);
+    FILE* f_out = freopen("shuffle.out", "w", stdout);
 #endif
 
 #ifdef TESTCASE
