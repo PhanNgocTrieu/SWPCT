@@ -53,7 +53,6 @@ using vpll = vector<pair<ll,ll>>;
 #define debugvtp(v) cout << #v << "[ " << endl; EACH(e, v) { cout << "(" << get<0>(e) << ", " << get<1>(e) << ", " << get<2>(e) << ")" << endl; } cout << "]" << endl;
 #define debugset(s) cout << #s << "[ "; EACH(e, s) { cout << e << " "; } cout << "] " << endl;
 
-#define READ_FILE
 #define pb push_back
 #define ppb pop_back
 // #define TESTCASE 
@@ -67,8 +66,9 @@ struct pair_t {
 };
 
 struct cows_t {
-    int id;
-    int pos{-1};
+    int s;
+    int t;
+    int b;
 };
 
 vector<vector<char>> grid(10, vector<char>(10));
@@ -107,86 +107,66 @@ int bfs() {
     return dist[L.x][L.y] - 1;
 }
 
-void process() {
-    /*
-        Bovine Shuffle
-            N cows ---- in some order (not sorted)
-            -> performing three shuffles in a row
-            -> N cows will be reordered
-
-                Mark positions for cows (1 ... N)
-            
-            first cow: lineup in position 1
-            second cow: lineup in position 2
-            ...
-            up to N
-
-
-            A shuffle is described with N numbers, a1...aN  where the cow in position i mopves to position ai during the shuffle
-                ai (1...N)
-
-            
-
-            N + 1
-            pos:
-                [0] [1] [2] [3] [4] [5]
-                     1   3   4   5   2
-
-                    table:
-                        1 -> 1
-                        2 -> 3
-                        3 -> 4
-                        4 -> 5
-                        5 -> 2
-
-                        1 <- 1
-                        3 <- 2
-                        4 <- 3
-                        5 <- 4
-                        2 <- 5
-    
-     */
-
+// #define SWEEP
+void sweep() {
     int N; cin >> N;
-    vector<int> pos(105, -1);
-    vector<cows_t> ids(N, cows_t{});
-    vector<int> res(N, -1);
-    // position input
-    for (int i = 1; i < N + 1; ++i) {
-        int v; cin >> v;
-        pos[v] = i;
-    }
-    
-    // id inputs
+    vector<int> timeline(1005, 0);
+    int bucks = 0;
     for (int i = 0; i < N; ++i) {
-        int id; cin >> id;
-        ids[i].id = id;
-        ids[i].pos = i + 1;
+        int s, t, b;
+        cin >> s >> t >> b;
+        timeline[s] += b;
+        timeline[t] -= b;
     }
 
+    int curBuck = 0;
+    int maxBuck = 0;
+    for (auto i = 1; i < 1000; ++i) {
+        curBuck += timeline[i];
+        maxBuck = max(maxBuck, curBuck); 
+    }
+    cout << maxBuck << endl;
+}
+
+
+// #define READ_FILE
+void process() {
     
+#ifndef SWEEP
+    /*
+        4 cows
+            s   t   b
+            4  10   1
+            8  13   3
+            2   6   2
+            5  12   2
 
-    // for (int i = 1; i < N + 1; ++i) {
-    //     cout << "i: " << i << " - pos: " << pos[i] << endl;
-    // }
-    // cout << endl;
+        Timeline: [...2....4.5.6..8.....................................................................]
+        Cows:     [...1....2.3.1........................................................................]
+        Neede b:  [...2....1.2.1..3.....................................................................]
+        Buckets:  [...2....3.5.1........................................................................]
+    */
 
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < N; ++j) {
-            // cout << ids[j].pos << " to ";
-            ids[j].pos = pos[ids[j].pos];
-            // cout << ids[j].pos << endl;
+    // brute force
+    int N; cin >> N;
+    vector<cows_t> cows(N);
+    vector<int> timeline(1005, 0);
+    int bucks = 0;
+    for (int i = 0; i < N; ++i) {
+        int s, t, b;
+        cin >> s >> t >> b;
+        for (int i = s; i <= t; ++i) {
+            timeline[i] += b;
         }
     }
 
-    sort(ids.begin(), ids.end(), [](const cows_t& a, const cows_t& b){
-        return a.pos < b.pos;
-    });
-
-    for (auto c : ids) {
-        cout << c.id << endl;
+    for (auto i = 1; i < 1000; ++i) {
+        bucks = max(bucks, timeline[i]); 
     }
-
+    cout << bucks << endl;
+#else
+    sweep();
+#endif
 }
 
 int main() {
@@ -195,8 +175,8 @@ int main() {
     cout.tie(0);
 
 #ifdef READ_FILE
-    FILE* f_in = freopen("shuffle.in", "r", stdin);
-    FILE* f_out = freopen("shuffle.out", "w", stdout);
+    FILE* f_in = freopen("blist.in", "r", stdin);
+    FILE* f_out = freopen("blist.out", "w", stdout);
 #endif
 
 #ifdef TESTCASE
