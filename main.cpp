@@ -53,7 +53,8 @@ using vpll = vector<pair<ll,ll>>;
 #define debugvtp(v) cout << #v << "[ " << endl; EACH(e, v) { cout << "(" << get<0>(e) << ", " << get<1>(e) << ", " << get<2>(e) << ")" << endl; } cout << "]" << endl;
 #define debugset(s) cout << #s << "[ "; EACH(e, s) { cout << e << " "; } cout << "] " << endl;
 
-#define READ_FILE
+#define pb push_back
+#define ppb pop_back
 // #define TESTCASE 
 struct Point {
     int x, y;
@@ -62,6 +63,12 @@ struct Point {
 struct pair_t {
     int first;
     int second;
+};
+
+struct cows_t {
+    int s;
+    int t;
+    int b;
 };
 
 vector<vector<char>> grid(10, vector<char>(10));
@@ -96,50 +103,13 @@ int bfs() {
             }
         }
     }
-
     return dist[L.x][L.y] - 1;
 }
 
+
+// #define READ_FILE
 void process() {
-    /*
-        Roads: [1 --- 100]
-        Divided N segments:
-            {length, limited speed}
-
-
-            [1] [2] [3] ... [100]
-        Please determine the maximum amount over the speed limit that Bessie travels during any part of her journey.
-     */
-    ll N,M;
-    cin >> N >> M;
-    int speedFault = 0;
-    vector<int> limits(100);
-    vector<int> bessies(100);
-    int start = 0;
-    for (int i = 0; i < N; ++i) {
-        pair_t t;
-        cin >> t.first >> t.second;
-        for (int j = start; j < start + t.first; ++j) {
-            limits[j] = t.second;
-        }
-        start += t.first;
-    }
-
-    start = 0;
-    for (int i = 0; i < M; ++i) {
-        pair_t t;
-        cin >> t.first >> t.second;
-        for (int j = start; j < start + t.first; ++j) {
-            bessies[j] = t.second;
-        }
-        start += t.first;
-    }
-
-    for (int i = 0; i < 100; i++) {
-        speedFault = max(speedFault, bessies[i] - limits[i]);
-    }
-
-    cout << speedFault << endl;
+   
 }
 
 int main() {
@@ -148,8 +118,8 @@ int main() {
     cout.tie(0);
 
 #ifdef READ_FILE
-    FILE* f_in = freopen("speeding.in", "r", stdin);
-    FILE* f_out = freopen("speeding.out", "w", stdout);
+    FILE* f_in = freopen("blist.in", "r", stdin);
+    FILE* f_out = freopen("blist.out", "w", stdout);
 #endif
 
 #ifdef TESTCASE
