@@ -109,7 +109,25 @@ int bfs() {
 
 // #define READ_FILE
 void process() {
-   
+    ll x,y,m;
+    cin >> x >> y >> m;
+    cout << "x: " << x << " y: " << y << " m: " << m << endl;
+    ll maxTank = 0;
+    // do with x;
+    {
+        ll times = y;
+        times += ((m - y) / x) * x;
+        maxTank = max(maxTank, times);
+    }
+
+    {
+        ll times = x;
+        times += ((m - x) / y) * y;
+        maxTank = max(maxTank, times);
+    }
+
+    cout << maxTank << endl;
+
 }
 
 int main() {
