@@ -2,10 +2,7 @@
     Links: https://usaco.org/index.php?page=viewproblem2&cpid=987
 */
 
-#include <iostream>
 #include <bits/stdc++.h>
-#include <map>
-#include <vector>
 
 using namespace std;
 
@@ -55,7 +52,6 @@ using vpll = vector<pair<ll,ll>>;
 
 #define pb push_back
 #define ppb pop_back
-// #define TESTCASE 
 struct Point {
     int x, y;
 };
@@ -106,10 +102,24 @@ int bfs() {
     return dist[L.x][L.y] - 1;
 }
 
-
+#define TESTCASE 
 // #define READ_FILE
 void process() {
-   
+    ll n, k;
+    cin >> n >> k;
+    vector<ll> brand_cost(k, 0);
+    for (int i = 0; i < k; ++i) {
+        ll b, c;
+        cin >> b >> c;
+        brand_cost[b - 1] += c;
+    }
+    // cout << __LINE__ << endl;
+    sort(brand_cost.rbegin(), brand_cost.rend());
+    ll ans = 0;
+    for (int i = 0; i < min(n,k); i++) {
+        ans += brand_cost[i];
+    }
+    cout << ans << '\n';
 }
 
 int main() {
@@ -118,8 +128,8 @@ int main() {
     cout.tie(0);
 
 #ifdef READ_FILE
-    FILE* f_in = freopen("blist.in", "r", stdin);
-    FILE* f_out = freopen("blist.out", "w", stdout);
+    FILE* f_in = freopen("input.in", "r", stdin);
+    FILE* f_out = freopen("output.out", "w", stdout);
 #endif
 
 #ifdef TESTCASE

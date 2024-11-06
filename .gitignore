@@ -1,3 +1,5 @@
 # Ignoring binari file
 a.out
+*.in
+*.out
 *.exe
