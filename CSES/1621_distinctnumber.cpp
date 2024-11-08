@@ -55,7 +55,6 @@ using vpll = vector<pair<ll,ll>>;
 // #define READ_FILE
 // #define TESTCASE
 
-
 void solve() {
     ll n; cin >> n;
     map<ll, ll> sn;
@@ -63,13 +62,7 @@ void solve() {
         ll v; cin >> v;
         sn[v]++;
     }
-
-    ll distnc = LONG_MAX;
-    EACH(s, sn) {
-        distnc = min(distnc, s.second);
-    }
-
-    cout << distnc << endl;
+    cout << sn.size() << endl;
 }
 
 int main() {
