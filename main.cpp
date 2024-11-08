@@ -82,11 +82,40 @@ struct type_t {
     ll v{0};
 };
 
+bool check(const vector<ll>& times, const ll m, const ll target) {
+    ll products = 0;
+    for (const auto& t : times) {
+        products += (m / t);
+        if (products >= target) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // #define TESTCASE
 // #define READ_FILE
 void process()
 {
+    ll n, t; cin >> n >> t;
+    vector<ll> times(n);
+    for (auto & t : times) { cin >> t; }
 
+    ll l = 0;
+    ll r = LONG_MAX;
+    ll ans = 0;
+    while (l < r - 1) {
+        ll m = (l + r) / 2;
+        if (check(times, m, t)) {
+            r = m;
+            ans = m;
+        }
+        else {
+            l = m;
+        }
+    }
+
+    cout << ans << "\n";
 }
 
 int main()
