@@ -97,25 +97,9 @@ bool check(const vector<ll>& times, const ll m, const ll target) {
 // #define READ_FILE
 void process()
 {
-    ll n, t; cin >> n >> t;
-    vector<ll> times(n);
-    for (auto & t : times) { cin >> t; }
-
-    ll l = 0;
-    ll r = LONG_MAX;
     ll ans = 0;
-    while (l < r - 1) {
-        ll m = (l + r) / 2;
-        if (check(times, m, t)) {
-            r = m;
-            ans = m;
-        }
-        else {
-            l = m;
-        }
-    }
 
-    cout << ans << "\n";
+    cout << ans << '\n';
 }
 
 int main()
@@ -125,8 +109,8 @@ int main()
     cout.tie(0);
 
 #ifdef READ_FILE
-    freopen("pails.in", "r", stdin);
-    freopen("pails.out", "w", stdout);
+    freopen("gymnastics.in", "r", stdin);
+    freopen("gymnastics.out", "w", stdout);
 #endif
 
 #ifdef TESTCASE
