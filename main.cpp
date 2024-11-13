@@ -89,13 +89,46 @@ bool check(const vector<ll>& times, const ll m, const ll target) {
     return false;
 }
 
+class Solution {
+public:
+    int maxArea(vector<int>& heights) {
+        int ans = 0;
+        int s = heights.size();
+        // brute force: O(n^2)
+        // for (int l = 0; l < s; ++l) {
+        //     for (int r = l + 1; r < s; ++r) {
+        //         ans = max(ans, (r - l) * min(heights[l], heights[r]));
+        //     }
+        // }
+
+
+        // two pointers: O(n)
+        int l = 0;
+        int r = s - 1;
+        while (l < r) {
+            ans = max(ans, (r-l) * min(heights[l], heights[r]));
+            // cout << "ans: " << ans << '\n';
+            if (heights[l] < heights[r]) {
+                l++;
+            }
+            else {
+                r--;
+            }
+        }
+        return ans;
+    }
+};
+
+
 // #define TESTCASE
 // #define READ_FILE
 void process()
 {
     ll ans = 0;
-
-    cout << ans << '\n';
+    vector<int> nums = {1,7,2,5,4,7,3,6};
+    auto get = Solution{}.maxArea(nums);
+    cout << get << '\n';
+    // cout << ans << '\n';
 }
 
 int main()
