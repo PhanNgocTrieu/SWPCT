@@ -91,42 +91,36 @@ bool check(const vector<ll>& times, const ll m, const ll target) {
 
 class Solution {
 public:
-    int maxArea(vector<int>& heights) {
+    int trap(vector<int>& height) {
+        // vector<int> waters(10005, 0);
         int ans = 0;
-        int s = heights.size();
-        // brute force: O(n^2)
-        // for (int l = 0; l < s; ++l) {
-        //     for (int r = l + 1; r < s; ++r) {
-        //         ans = max(ans, (r - l) * min(heights[l], heights[r]));
-        //     }
-        // }
+        int s = height.size();
+        // brute force
+        for (int i = 0; i < s; ++i) {
+            int mL = height[i];
+            int mR = height[i];
 
+            for (int j = 0; j < i; ++j) {
+                mL = max(mL, height[j]);
+            }
 
-        // two pointers: O(n)
-        int l = 0;
-        int r = s - 1;
-        while (l < r) {
-            ans = max(ans, (r-l) * min(heights[l], heights[r]));
-            // cout << "ans: " << ans << '\n';
-            if (heights[l] < heights[r]) {
-                l++;
+            for (int j = i + 1; j < s; ++j) {
+                mR = max(mR, height[j]);
             }
-            else {
-                r--;
-            }
+
+            ans += min(mL, mR) - height[i];
         }
         return ans;
     }
 };
-
 
 // #define TESTCASE
 // #define READ_FILE
 void process()
 {
     ll ans = 0;
-    vector<int> nums = {1,7,2,5,4,7,3,6};
-    auto get = Solution{}.maxArea(nums);
+    vector<int> nums = {0,2,0,3,1,0,1,3,2,1};
+    auto get = Solution{}.trap(nums);
     cout << get << '\n';
     // cout << ans << '\n';
 }
