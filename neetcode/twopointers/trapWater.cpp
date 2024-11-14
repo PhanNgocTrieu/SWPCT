@@ -72,6 +72,9 @@ using vpll = vector<pair<ll, ll>>;
 
 #define pb push_back
 #define ppb pop_back
+#define BRUTE_FORCE
+#define TWO_POINTERS
+#define GRAPH
 
 struct type_t {
     ll k;
@@ -91,39 +94,54 @@ bool check(const vector<ll>& times, const ll m, const ll target) {
 
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int s = 1; // could not be 0 cause 0 mean no eating
-        int e = (*max_element(piles.begin(), piles.end()));
-        int ans = e;
-        while (s <= e) {
-            int m = (e + s) / 2;
-            long long totalTime =0;
-            for (auto p : piles) {
-                totalTime += ceil(static_cast<double>(p) / m);
+    int trap(vector<int>& height) {
+        // vector<int> waters(10005, 0);
+        int ans = 0;
+        int s = height.size();
+#ifdef BRUTE_FORCE
+        // Brute Force
+        // {
+        //     for (int i = 0; i < s; ++i) {
+        //         int mL = height[i];
+        //         int mR = height[i];
+        //         for (int j = 0; j < i; ++j) { mL = max(mL, height[j]); }
+        //         for (int j = i + 1; j < s; ++j) { mR = max(mR, height[j]); }
+        //         ans += min(mL, mR) - height[i];
+        //     }
+        // }
+#endif
+        {
+            vector<int> maxLeft(s);
+            vector<int> maxRight(s);
+            {
+                maxLeft[0] = height[0];
+                for (int i = 1; i < s; ++i) {
+                    maxLeft[i] = max(maxLeft[i - 1], height[i]);
+                }
+
+                maxRight[s - 1] = height[s - 1];
+                for (int i = s - 2; i >= 0; --i) {
+                    maxRight[i] = max(maxRight[i + 1], height[i]);
+                }
             }
-            if (totalTime <= h) {
-                ans = m;
-                e = m - 1;
-            }
-            else {
-                s = m + 1;
+            // for (auto v : maxLeft) { cout << v << " "; }
+            // cout << '\n';
+            // for (auto v : maxRight) { cout << v << " "; }
+            for (int i = 0; i < s; ++i) {
+                ans += min(maxLeft[i], maxRight[i]) - height[i];
             }
         }
         return ans;
     }
 };
 
-
 // #define TESTCASE
 // #define READ_FILE
 void process()
 {
-    ll ans = INT32_MAX;
-    vector<int> nums = {
-        // 1,4,3,2
-        25,10,23,4
-    };
-    auto get = Solution{}.minEatingSpeed(nums, 4);
+    ll ans = 0;
+    vector<int> nums = {0,2,0,3,1,0,1,3,2,1};
+    auto get = Solution{}.trap(nums);
     cout << get << '\n';
     // cout << ans << '\n';
 }
