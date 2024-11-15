@@ -8,7 +8,6 @@ int R, C;
 int xS, yS;
 char map[MAX_RC][MAX_RC + 1];
 
-
 void bfs() {
 
 }
