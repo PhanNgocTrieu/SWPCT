@@ -1,71 +1,57 @@
 #include <iostream>
-#include <vector>
-#include <queue>
+#include <algorithm>
 using namespace std;
 
-#define MAX_RC	(100)
+int N;//선수의 인원수 number of playersnumber of players
+long long T;//시간 time
+long long P[100000 + 10];//선수 초기 위치 player initial position
+long long S[100000 + 10];//선수 속도 player speed
+int group_first[100000 + 10];//각 그룹의 선두선수 leader of each group
 
-int R, C;
-char map[MAX_RC][MAX_RC + 1];
-int dx[] = {-1 ,1, 0, 0};
-int dy[] = {0, 0, -1 ,1};
-int sX = 0;
-int sY = 0;
-int ans = INT_MAX;
-struct Pos{
-	int x = 0;
-	int y = 0;
-	int l = 0;
-	Pos(int x, int y, int l) : x(x), y(y), l(l) {}
-};
-// vector<bool> numbers(10, false);
-void Input_Data(void) {
-	cin >> R >> C;
-	for (int r = 0; r < R; r++) {
-		cin >> map[r];
-		for (int c = 0; c < C; ++c) {
-			if (map[r][c] == 'S') {
-				sX = r;
-				sY = c;
-			}
-		}
+
+void InputData() {
+	cin >> N >> T;
+	for (int i = 0; i < N; i++) {
+		cin >> P[i] >> S[i];
 	}
-}
-
-int backtrack(vector<vector<bool>> visited, int x, int y, int dis) {
-	if (x < 0 && x >= R
-	&& y < 0 && y >= C
-	&& visited[x][y]
-	) {
-		return dis;
-	}
-
-	visited[x][y] = true;
-	auto r = backtrack(visited, x, y + 1, dis + 1);
-
 }
 
 int solve() {
-	vector<vector<bool>> visited(R, vector<bool>(C,false));
-	ans = min(ans, backtrack(visited, sX, sY, 0));
+    // Create an array of indices to sort based on positions
+    int indices[100000 + 10];
+    for (int i = 0; i < N; i++) {
+        indices[i] = i;
+    }
 
-	return ans;
+    // Sort indices based on the positions of the runners
+    sort(indices, indices + N, [](int a, int b) {
+        return P[a] < P[b];
+    });
+
+    // Initialize the number of groups
+    int num_groups = 0;
+
+    // Iterate through the sorted indices to form groups
+    for (int i = 0; i < N; i++) {
+        int idx = indices[i];
+        // If this runner is the first in a new group
+        if (num_groups == 0 || S[idx] < S[group_first[num_groups - 1]]) {
+            group_first[num_groups] = idx;
+            num_groups++;
+        }
+    }
+
+    return num_groups;
 }
 
-int main(void) {
-	ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
-	cout.tie(nullptr);
+int main() {
+	int ans = -1;
+	InputData();//입력 Input
 
-	int sol = -1;
-
-	// 입력 받는 부분
-	Input_Data();
-
-	// 여기서부터 작성
-	sol = solve();
-	// 출력 하는 부분
-	cout << sol << '\n';
-
+	//코드를 작성하세요 Write the code
+    ans = solve();
+	//출력 Output
+	cout << ans << endl;
+	for (int i = 0; i < ans; i++) cout << group_first[i] << " ";
 	return 0;
 }
