@@ -1,53 +1,62 @@
-// 수정전 로봇청소기 1회 사용 시작시간과 종료시간을 이용하여 요금을 계산한 코드
-#include <iostream>
+
+
+#include <bits/stdc++.h>
 using namespace std;
 
-char start_time[10];
-char end_time[10];
-
-void InputData(void)
-{
-	cin >> start_time;
-	cin >> end_time;
+bool binarySearch(const vector<int>& nums, int s, int target) {
+	int l = s;
+	int r = nums.size() - 1;
+	while (l <= r) {
+		int m = l + (r - l) / 2;
+		// cout << "l: " << l << " r: " << r << " m: " << m << endl;
+		if (nums[m] == target) {
+			// cout << "found: " << nums[m] << endl;
+			return true;
+		} else if (nums[m] > target) {
+			r = m - 1;
+		} else {
+			l = m + 1;
+		}
+	}
+	return false;
 }
 
-int ConvertInt(char * t)
-{
-	return (t[0] - '0') * 10 + (t[1] - '0');
+void solve() {
+	int n;
+	cin >> n;
+	cout << "Testcase with input size: " << n << endl;
+	vector<int> nums(n);
+	for(int i = 0; i < n; i++) {
+		cin >> nums[i];
+	}
+	int l = 0, r = n - 1;
+	int outN = 1;
+	int outM = 1;
+	sort(nums.begin(), nums.end());
+	for (auto n : nums) {
+		cout << n << " ";
+	}
+	cout << endl;
+	for (int i = 0; i < nums.size(); ++i) {
+		if (binarySearch(nums, i, (nums.size() - 2) / nums[i])) {
+			outN = nums[i];
+			outM = (nums.size() - 2) / nums[i];
+			break;
+		}
+	}
+
+	cout << "output: " << outN << " " << outM << endl;
 }
 
-int ComputeTime(void)
-{
-	int s = ConvertInt(start_time) * 60 + ConvertInt(start_time + 3);
-	int e = ConvertInt(end_time) * 60 + ConvertInt(end_time + 3);
-    cout << "s: " << s << " - e: " << e << "\n";
-	return (e < s) ? (((24 * 60) - s) + e) : (e - s);
-}
-
-int Solve(void)
-{
-	int p;
-	int t = ComputeTime();
-    cout << "t: " << t << endl;
-	if (t < 30) return 500;
-	p = 500 + ((int)((t - 30) / 10)) * 300 + ((t%10) != 0 ? 300 : 0);
-    p = p >= 30000 ? 30000 : p;
-	return p;
-}
-
-void OutputData(int sol)
-{
-	cout << sol;
-}
-
-int main(void)
-{
-	int sol = -1;
-	InputData();// 입력
-
-	sol = Solve();
-
-	OutputData(sol);// 출력
-
+int main() {
+	FILE* f_in = freopen("pails.in", "r", stdin);
+    FILE* f_out = freopen("pails.out", "w", stdout);
+	int t;
+	cin >> t;
+	while(t--) {
+		solve();
+	}
+	fclose(f_in);
+    fclose(f_out);
 	return 0;
 }
