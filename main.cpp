@@ -1,24 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 void solve() {
-	// Solution here
-	string math; cin >> math;
-	string one = "", two = "", three = "";
-	for (auto c : math) {
-		if (c == '1') one += "1+";
-		else if (c == '2') two += "2+";
-		else if (c == '3') three += "3+";
-	}
-	string output = one + two + three;
-	output.pop_back();
-	cout << output << endl;
+    int n;
+    cin >> n;
+    int res = 1;
+    if (n == 1) {
+        cout << 1 << endl;
+        return;
+    }
+
+    vector<int> array_input;
+    array_input.resize(n, 0);
+    res = 2;
+    int l = 0;
+    int r = n - 1;
+    while (l <= r) {
+        auto cal = (r - l + 1) / 2;
+        // cout << "cal: " << cal << endl;
+        if (cal <= 2) {
+            res = max(res, r - l);
+        }
+        r--;
+    }
+    cout << res << endl;
 }
 
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-    solve();
-
-	return 0;
+    int t; cin >> t;
+    while (t--) solve();
+    return 0;
 }
