@@ -1,33 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve() {
-    int n;
-    cin >> n;
-    int res = 1;
-    if (n == 1) {
-        cout << 1 << endl;
-        return;
-    }
-
-    vector<int> array_input;
-    array_input.resize(n, 0);
-    res = 2;
-    int l = 0;
-    int r = n - 1;
-    while (l <= r) {
-        auto cal = (r - l + 1) / 2;
-        // cout << "cal: " << cal << endl;
-        if (cal <= 2) {
-            res = max(res, r - l);
+class Solution {
+public:
+    vector<int> finalPrices(vector<int>& prices) {
+        vector<int> res;
+        for (int i = 0; i < prices.size(); i++) {
+            int discount = 0;
+            for (int j = i + 1; j < prices.size(); j++) {
+                if (prices[j] <= prices[i]) {
+                    discount = prices[j];
+                    break;
+                }
+            }
+            res.push_back(prices[i] - discount);
         }
-        r--;
+        return res;
     }
-    cout << res << endl;
-}
+};
 
 int main() {
-    int t; cin >> t;
-    while (t--) solve();
+    Solution sol;
+    vector<int> prices = {8, 4, 6, 2, 3};
+    vector<int> res = sol.finalPrices(prices);
+    for (int i = 0; i < res.size(); i++) {
+        cout << res[i] << " ";
+    }
+    cout << endl;
     return 0;
 }
