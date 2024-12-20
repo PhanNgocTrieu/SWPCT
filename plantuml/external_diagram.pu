@@ -1,0 +1,23 @@
+@startuml
+title External System Diagram
+
+' rectangle "host OS" {
+'     component "webosprojectinhmi"
+' }
+
+rectangle "WebOS Container" {
+    component "Luna-surfacemanager" as LSM
+    component "hcc-manager" as HCC
+    component "WebAppMgr" as WAM
+    component "VideoManager" as VM
+    component SAM
+}
+
+HCC -> LSM : response of getScreenScaling {"scaling": "16:9"}
+HCC -> LSM : response of getScreenScaling {"scaling": "16:9"}
+HCC -> LSM : response of getScreenScaling {"scaling": "16:9"}
+LSM -> VM : setDisplayWindow with scale
+LSM <- VM : response of setDisplayWindow
+
+
+@enduml
