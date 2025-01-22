@@ -1,25 +1,43 @@
-// https://usaco.org/index.php?page=viewproblem2&cpid=666
 #include <bits/stdc++.h>
 using namespace std;
 
-void setIO(string name = "") {  // name is nonempty for USACO file I/O
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);  // see Fast Input & Output
-	// alternatively, cin.tie(0)->sync_with_stdio(0);
-	if (!name.empty()) {
-		freopen((name + ".in").c_str(), "r", stdin);  // see Input & Output
-		freopen((name + ".out").c_str(), "w", stdout);
-	}
-}
-
 void solve() {
+    long long n, x, y;
+    cin >> n >> x >> y;
+    long long ans = 0;
+    vector<long long> elements(n);
+    long long sum = 0;
+    for (int i = 0; i < n; i++) {
+        cin >> elements[i];
+        sum += elements[i];
+    }
 
+    for (int i = 0; i < n; i++) {
+        for (int j = 1; j <n; ++j) {
+
+        }
+    }
+
+    sort(elements.begin(), elements.end(), greater<long long>());
+
+
+    int l = 0;
+    int r = n - 1;
+
+    while (l < r) {
+
+    }
 }
 
 int main() {
-	setIO("haybales");
+    ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+	cout.tie(nullptr);
 
-    solve();
+    int t; cin >> t;
+    while (t--) {
+        solve();
+    }
 
     return 0;
 }
