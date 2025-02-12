@@ -1,31 +1,27 @@
+// https://codeforces.com/contest/2059/problem/A
 #include <bits/stdc++.h>
 using namespace std;
 
+int a[55], b[55];
+
 void solve() {
-    long long n, x, y;
-    cin >> n >> x >> y;
-    long long ans = 0;
-    vector<long long> elements(n);
-    long long sum = 0;
-    for (int i = 0; i < n; i++) {
-        cin >> elements[i];
-        sum += elements[i];
+    set<int> ma, mb;
+    int n; cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+        cin >> a[i];
+        ma.insert(a[i]);
     }
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 1; j <n; ++j) {
-
-        }
+    for (int i = 0; i < n; ++i) {
+        cin >> b[i];
+        mb.insert(b[i]);
     }
 
-    sort(elements.begin(), elements.end(), greater<long long>());
-
-
-    int l = 0;
-    int r = n - 1;
-
-    while (l < r) {
-
+    if (ma.size() + mb.size() < 4) {
+        cout << "NO" << endl;
+    } else {
+        cout << "YES" << endl;
     }
 }
 
