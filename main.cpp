@@ -5,34 +5,36 @@ using namespace std;
 
 #define ll long long
 
-
-/*
-    Algorithm:
-        N = 5, Tmax = 8;
-            [4, 8 ,7 ,6, 4]
-
-            greater<ll> pq;
-
-            if m = 3:
-                pq = {4 7 6}
-                    (adding 6 element) pq = {8 7 10}
-                    (adding 4 element) pq = {7 10 14}
-                => 14 <= 8 => false
-
-            if m = 4:
-                pq = {4 8 7 6}
-                    (adding 4 element) pq = {4 6 7 8 8}
-
-                => last cow finish at (8 <= 8) => true
-*/
-
 void solve() {
+    ll m,n,k;
+    cin >> m >> n >> k;
+    ll idx = 0;
+    vector<vector<string>> grid;
+    for (int i = 0; i < m; i++) {
+        string s;
+        cin >> s;
+        vector<string> row(n * k);
+        for (int j = 0; j < s.length(); ++j) {
+            for (int x = j * k; x < (j * k + k); x++) {
+                row[x] = s[j];
+            }
+        }
+        for (auto z = 0; z < k; z++) {
+            grid.push_back(row);
+        }
+    }
 
+    for (int i = 0; i < grid.size(); i++) {
+        for (int j = 0; j < grid[i].size(); j++) {
+            cout << grid[i][j];
+        }
+        cout << endl;
+    }
 }
 
 #define READ_FILE
-#define FILE_I "convention.in"
-#define FILE_O "convention.out"
+#define FILE_I "cowsignal.in"
+#define FILE_O "cowsignal.out"
 
 int main() {
     ios_base::sync_with_stdio(false);
