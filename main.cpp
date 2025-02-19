@@ -1,49 +1,65 @@
-// https://vjudge.net/contest/690982#problem/D
+// https://vjudge.net/contest/690982#problem/E
 #include <bits/stdc++.h>
 
 using namespace std;
 
 #define ll long long
 
+/*
+3
+4 10 1
+8 13 3
+2 6 2
+
+        [1  2  3  4  5  6  7  8  9  10  11  12  13]
+[0]              [s]
+[1]                          [s]                [e]
+[2]        [s]         [e]          [e]
+---------------------------------------------------
+           [2]   [3]   [1]   [4]    [3]         [1]
+
+*/
+
+class Compare {
+public:
+    bool operator() (pair<ll,ll> a, pair<ll,ll> b) {
+        // if (a.first == b.first) {
+        //     return a.second > b.second;
+        // }
+        return a.first >= b.first;
+    }
+};
+
 void solve() {
-    ll N; cin >> N;
-    vector<ll> pos(N);
-    vector<ll> ids(N);
-    vector<ll> ans(N);
-    unordered_map <ll, ll> prev_mp;
-    for (ll i = 0; i < N; i++) {
-        cin >> pos[i];
-        prev_mp.insert({pos[i], i + 1});
+    ll n; cin >> n;
+    priority_queue<pair<ll,ll>, vector<pair<ll,ll>>, Compare> pq;
+    for (int i = 0; i < n; i++) {
+        ll s, e, b; cin >> s >> e >> b;
+        pq.push({s, b});
+        pq.push({e, -b});
+    }
+    ll ans = 0;
+    ll cur_buck = 0;
+    while (!pq.empty()) {
+        auto top = pq.top();
+        // cout << "pq.top().first: " << top.first << " pq.top().second: " << top.second << endl;
+        pq.pop();
+        cur_buck += top.second;
+        ans = max(ans, cur_buck);
     }
 
-    for (ll i = 0; i < N; i++) {
-        cin >> ids[i];
-    }
-
-    for (int idx = 0; idx < N; ++idx) {
-        ll k = 3;
-        ll cur_pos = idx + 1;
-        while (k--) {
-            cur_pos = prev_mp[cur_pos];
-        }
-        ans[cur_pos - 1] = ids[idx];
-        // cout << "pos of: " << ids[idx] << " is: " << cur_pos << " insert value: -> " << ans[cur_pos-1] << endl;
-    }
-
-    for (ll i = 0; i < N; i++) {
-        cout << ans[i] << endl;
-    }
+    cout << ans << endl;
 }
 
 #define READ_FILE
 #define ASSIGNMENT
 
 #ifndef ASSIGNMENT
-#define FILE_I "./file/shuffle.in"
-#define FILE_O "./file/shuffle.out"
+#define FILE_I "./file/blist.in"
+#define FILE_O "./file/blist.out"
 #else
-#define FILE_I "shuffle.in"
-#define FILE_O "shuffle.out"
+#define FILE_I "blist.in"
+#define FILE_O "blist.out"
 #endif
 
 int main() {
