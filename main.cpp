@@ -1,4 +1,4 @@
-// https://vjudge.net/contest/690982#problem/C
+// https://vjudge.net/contest/690982#problem/D
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -6,69 +6,44 @@ using namespace std;
 #define ll long long
 
 void solve() {
-    ll s, e; cin >> s >> e;
-    ll ans = 0;
-
-    if (s == e) {
-        cout << "0" << endl;
-        return;
+    ll N; cin >> N;
+    vector<ll> pos(N);
+    vector<ll> ids(N);
+    vector<ll> ans(N);
+    unordered_map <ll, ll> prev_mp;
+    for (ll i = 0; i < N; i++) {
+        cin >> pos[i];
+        prev_mp.insert({pos[i], i + 1});
     }
 
-    ll steps = 0;
-    ll k = 0;
-    ll forward = 1;
-    ll prev_pos;
-    ll cur_pos = s;
-
-    if (s < e) {
-        while (
-            cur_pos < e
-        ) {
-            steps = (1 << k) * forward;
-            prev_pos = cur_pos;
-            cur_pos = s + steps;
-            ans += abs(cur_pos - prev_pos);
-            // cout << "steps: " << steps << endl;
-            // cout << "prev_pos: " << prev_pos << endl;
-            // cout << "cur_pos: " << cur_pos << endl;
-            // cout << "ans: " << ans << endl;
-            forward *= -1;
-            k++;
-        }
-
-        ans -= (cur_pos - e);
-    } else {
-        // cout << "down: " << s << " to: " << e << endl;
-        while (
-            cur_pos > e
-        ) {
-            steps = (1 << k) * forward;
-            prev_pos = cur_pos;
-            cur_pos = s + steps;
-            ans += abs(cur_pos - prev_pos);
-            // cout << "steps: " << steps << endl;
-            // cout << "prev_pos: " << prev_pos << endl;
-            // cout << "cur_pos: " << cur_pos << endl;
-            // cout << "ans: " << ans << endl;
-            forward *= -1;
-            k++;
-        }
-
-        ans -= (e - cur_pos);
+    for (ll i = 0; i < N; i++) {
+        cin >> ids[i];
     }
 
-    cout << ans << endl;
+    for (int idx = 0; idx < N; ++idx) {
+        ll k = 3;
+        ll cur_pos = idx + 1;
+        while (k--) {
+            cur_pos = prev_mp[cur_pos];
+        }
+        ans[cur_pos - 1] = ids[idx];
+        // cout << "pos of: " << ids[idx] << " is: " << cur_pos << " insert value: -> " << ans[cur_pos-1] << endl;
+    }
+
+    for (ll i = 0; i < N; i++) {
+        cout << ans[i] << endl;
+    }
 }
 
 #define READ_FILE
 #define ASSIGNMENT
 
 #ifndef ASSIGNMENT
-#define FILE_I "./file/lostcow.in"
-#define FILE_O "./file/lostcow.out"
+#define FILE_I "./file/shuffle.in"
+#define FILE_O "./file/shuffle.out"
 #else
-#define FILE_I "lostcow.in"
-#define FILE_O "lostcow.out"
+#define FILE_I "shuffle.in"
+#define FILE_O "shuffle.out"
 #endif
 
 int main() {
