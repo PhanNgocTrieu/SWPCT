@@ -14,6 +14,7 @@ using namespace std;
 
 #define debug_v(v) \
     { \
+        cout << #v << ": "; \
         for (auto x : v) { \
             cout << x << ' '; \
         } \
@@ -36,79 +37,52 @@ using namespace std;
         cout << #x << ": " << x << '\n'; \
     }
 
+#define debug_msg(msg) \
+    { \
+        cout << #msg << '\n'; \
+    }
+
 typedef long long ll;
-ll n;
-queue<ll> sq;
-ll start = 1;
-
-bool checkBFS(const vector<vector<ll>>& a) {
-    // debug_q(sq);
-    if (sq.front() != start) {
-        return false;
-    }
-
-    queue<ll> q;
-    vector<bool> visited(n + 1, false);
-    q.push(start);
-    visited[start] = true;
-    auto cur_sq = sq.front();
-    sq.pop();
-
-    while(!q.empty()) {
-        auto cur_u = q.front();
-        q.pop();
-        set<ll> _s;
-        ll _size = 0;
-        for (auto x : a[cur_u]) {
-            if (!visited[x]) {
-                visited[x] = true;
-                _size++;
-                _s.insert(x);
-            }
-        }
-
-        while (_size-- && !_s.empty()) {
-            cur_sq = sq.front();
-            if (!_s.count(cur_sq)) {
-                return false;
-            }
-            sq.pop();
-            q.push(cur_sq);
-        }
-    }
-
-    return sq.empty() ? true : false;
-}
 
 void solve() {
-    cin >> n;
-    vector<vector<ll>> a(n + 1);
-    for (int i = 0; i < n - 1; i++) {
-        ll u, v; cin >> u >> v;
-        a[u].push_back(v);
-        a[v].push_back(u);
-    }
-    // debug_vv(a);
-    for (int i = 0; i < n; i++) {
+    ll n, q; cin >> n >> q;
+    vector<ll> a(n);
+    vector<ll> pre_1(n + 1, 0), pre_2(n + 1, 0), pre_3(n + 1, 0);
+    for (ll i = 1; i <= n; i++) {
         ll x; cin >> x;
-        sq.push(x);
+        pre_1[i] = pre_1[i - 1] + ((x == 1) ? 1 : 0);
+        pre_2[i] = pre_2[i - 1] + ((x == 2) ? 1 : 0);
+        pre_3[i] = pre_3[i - 1] + ((x == 3) ? 1 : 0);
     }
-
-    if (checkBFS(a)) {
-        cout << "YES" << '\n';
-    }
-    else {
-        cout << "NO" << '\n';
+    vector<pair<ll, ll>> queries(q);
+    for (int i = 0; i < q; i++) {
+        ll l, r; cin >> l >> r;
+        cout << pre_1[r] - pre_1[l-1] << " "
+            << pre_2[r] - pre_2[l-1] << " "
+            << pre_3[r] - pre_3[l-1] << '\n';
     }
 }
+
+#define READ_FILE
+#define FILE_I "bcount.in"
+#define FILE_O "bcount.out"
 
 int main() {
     ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    // ll t; cin >> t;
+	cin.tie(nullptr);
+	cout.tie(nullptr);
+#ifdef READ_FILE
+    auto f_i = freopen(FILE_I, "r", stdin);
+    auto f_o = freopen(FILE_O, "w", stdout);
+#endif
+    // int t; cin >> t;
     // while (t--) {
         solve();
     // }
+
+#ifdef READ_FILE
+    fclose(f_i);
+    // fclose(f_o);
+#endif
     return 0;
 }
