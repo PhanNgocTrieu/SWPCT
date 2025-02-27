@@ -40,51 +40,40 @@ typedef long long ll;
 ll n;
 queue<ll> sq;
 ll start = 1;
+
 bool checkBFS(const vector<vector<ll>>& a) {
+    // debug_q(sq);
     if (sq.front() != start) {
         return false;
     }
 
     queue<ll> q;
     vector<bool> visited(n + 1, false);
-    vector<bool> s(n + 1, false);
     q.push(start);
     visited[start] = true;
-    ll cur_s = 0;
-    s[start] = true;
+    auto cur_sq = sq.front();
     sq.pop();
 
     while(!q.empty()) {
         auto cur_u = q.front();
-        // debug_x(q.front());
         q.pop();
-
-        if (cur_u == -1) {
-            // debug_x(cur_s);
-            while (cur_s > 0)
-            {
-                cur_s--;
-                if (sq.empty()) return false;
-                // debug_x(cur_s);
-                auto x = sq.front();
-                if (s[x] == false) {
-                    return false;
-                }
-                sq.pop();
-                s[x] = false;
+        set<ll> _s;
+        ll _size = 0;
+        for (auto x : a[cur_u]) {
+            if (!visited[x]) {
+                visited[x] = true;
+                _size++;
+                _s.insert(x);
             }
         }
-        else {
-            q.push(-1);
-            for (auto x : a[cur_u]) {
-                s[x] = true;
-                cur_s++;
-                // debug_x(x);
-                if (!visited[x]) {
-                    visited[x] = true;
-                    q.push(x);
-                }
+
+        while (_size-- && !_s.empty()) {
+            cur_sq = sq.front();
+            if (!_s.count(cur_sq)) {
+                return false;
             }
+            sq.pop();
+            q.push(cur_sq);
         }
     }
 
@@ -97,13 +86,9 @@ void solve() {
     for (int i = 0; i < n - 1; i++) {
         ll u, v; cin >> u >> v;
         a[u].push_back(v);
-        if (i == 0) {
-            start = u;
-        }
+        a[v].push_back(u);
     }
-
     // debug_vv(a);
-
     for (int i = 0; i < n; i++) {
         ll x; cin >> x;
         sq.push(x);
