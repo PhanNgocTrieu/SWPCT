@@ -42,30 +42,55 @@ using namespace std;
         cout << #msg << '\n'; \
     }
 
+#define debug_map(m) \
+    { \
+        for (auto it = m.begin(); it != m.end(); it++) { \
+            cout << it->first << ": " << it->second << '\n'; \
+        } \
+    }
+
 typedef long long ll;
 
-void solve() {
-    ll n, q; cin >> n >> q;
-    vector<ll> a(n);
-    vector<ll> pre_1(n + 1, 0), pre_2(n + 1, 0), pre_3(n + 1, 0);
-    for (ll i = 1; i <= n; i++) {
-        ll x; cin >> x;
-        pre_1[i] = pre_1[i - 1] + ((x == 1) ? 1 : 0);
-        pre_2[i] = pre_2[i - 1] + ((x == 2) ? 1 : 0);
-        pre_3[i] = pre_3[i - 1] + ((x == 3) ? 1 : 0);
+ll number_chars(string s) {
+    ll n = 0;
+    map<ll, bool> m;
+    for (int i = 0; i < s.length(); ++i) {
+        if (m[s[i]] == false) {
+            m[s[i]] = true;
+            n++;
+            if (n >= 26) {
+                break;
+            }
+        }
     }
-    vector<pair<ll, ll>> queries(q);
-    for (int i = 0; i < q; i++) {
-        ll l, r; cin >> l >> r;
-        cout << pre_1[r] - pre_1[l-1] << " "
-            << pre_2[r] - pre_2[l-1] << " "
-            << pre_3[r] - pre_3[l-1] << '\n';
-    }
+    return n;
 }
 
-#define READ_FILE
-#define FILE_I "bcount.in"
-#define FILE_O "bcount.out"
+void solve() {
+    ll n;
+    ll v_max = -1;
+    string s;
+    cin >> n >> s;
+    map<char, bool> m;
+    // brute force
+    for (int i = 0; i < s.length(); ++i) {
+        if (m.find(s[i]) != m.end()) {
+            auto left_s = string({s.begin(), s.begin() + i});
+            auto right_s = string({s.begin() + i, s.end()});
+            ll get_left = number_chars(left_s);
+            ll get_right = number_chars(right_s);
+            v_max = max(v_max, get_left + get_right);
+        }
+        m[s[i]] = true;
+    }
+
+    cout << v_max << '\n';
+
+}
+
+// #define READ_FILE
+#define FILE_I "div7.in"
+#define FILE_O "div7.out"
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -75,14 +100,14 @@ int main() {
     auto f_i = freopen(FILE_I, "r", stdin);
     auto f_o = freopen(FILE_O, "w", stdout);
 #endif
-    // int t; cin >> t;
-    // while (t--) {
+    int t; cin >> t;
+    while (t--) {
         solve();
-    // }
+    }
 
 #ifdef READ_FILE
     fclose(f_i);
-    // fclose(f_o);
+    fclose(f_o);
 #endif
     return 0;
 }
