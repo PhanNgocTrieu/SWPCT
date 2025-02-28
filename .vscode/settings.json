@@ -75,6 +75,7 @@
         "valarray": "cpp",
         "variant": "cpp",
         "queue": "cpp",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "compare": "cpp"
     }
 }
