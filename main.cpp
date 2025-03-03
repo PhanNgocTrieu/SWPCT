@@ -51,41 +51,11 @@ using namespace std;
 
 typedef long long ll;
 
-ll number_chars(string s) {
-    ll n = 0;
-    map<ll, bool> m;
-    for (int i = 0; i < s.length(); ++i) {
-        if (m[s[i]] == false) {
-            m[s[i]] = true;
-            n++;
-            if (n >= 26) {
-                break;
-            }
-        }
-    }
-    return n;
-}
-
 void solve() {
-    ll n;
-    ll v_max = -1;
-    string s;
-    cin >> n >> s;
-    map<char, bool> m;
-    // brute force
-    for (int i = 0; i < s.length(); ++i) {
-        if (m.find(s[i]) != m.end()) {
-            auto left_s = string({s.begin(), s.begin() + i});
-            auto right_s = string({s.begin() + i, s.end()});
-            ll get_left = number_chars(left_s);
-            ll get_right = number_chars(right_s);
-            v_max = max(v_max, get_left + get_right);
-        }
-        m[s[i]] = true;
-    }
+    ll ans = 0;
 
-    cout << v_max << '\n';
-
+    
+    cout << ans << '\n';
 }
 
 // #define READ_FILE
