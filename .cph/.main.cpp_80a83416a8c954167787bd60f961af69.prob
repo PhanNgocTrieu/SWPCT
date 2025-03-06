@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\swpct\\SWPCT\\main.cpp","tests":[{"id":1741251304843,"input":"8 3\n2 3 3","output":"13"},{"id":1741251784163,"input":"12 5\n2 1 3 4 2","output":"27"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\swpct\\SWPCT\\main.cpp","group":"local","local":true}

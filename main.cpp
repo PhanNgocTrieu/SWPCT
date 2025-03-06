@@ -1,5 +1,6 @@
 // https://vjudge.net/contest/690988#problem/B
 #include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 #define debug_q(q) \
@@ -8,6 +9,17 @@ using namespace std;
         while (!q_.empty()) { \
             cout << q_.front() << ' '; \
             q_.pop(); \
+        } \
+        cout << '\n'; \
+    }\
+
+#define debug_pq(pq) \
+    { \
+        cout << #pq << ": "; \
+        auto pq_ = pq; \
+        while (!pq_.empty()) { \
+            cout << pq_.top() << ' '; \
+            pq_.pop(); \
         } \
         cout << '\n'; \
     }
@@ -51,66 +63,24 @@ using namespace std;
 
 typedef long long ll;
 
-bool cmp(pair<ll, ll> a, pair<ll, ll> b) {
-    return a.first < b.first;
-}
-
-ll min_s = 1e9;
-queue<pair<ll, ll>> q;
-vector<vector<ll>> distance(1010, vector<ll>(1010, 1e9));
-ll dx[] = {0, 0, 1, -1};
-ll dy[] = {1, -1, 0, 0};
-ll r,c;
-
-
-void bfs(const vector<vector<char>>& v) {
-    ::distance[q.front().first][q.front().second] = 0;
-
-    while (!q.empty()) {
-        auto p = q.front();
-        q.pop();
-        for (int i = 0; i < 4; ++i) {
-            ll x = p.first + dx[i];
-            ll y = p.second + dy[i];
-            if (
-                x >= 0 && x < r &&
-                y >= 0 && y < c &&
-                ::distance[x][y] == 1e9 &&
-                v[x][y] != 'T') {
-
-                if (v[x][y] == 'S') {
-                    min_s = ::distance[p.first][p.second] + 1;
-                }
-
-                ::distance[x][y] = ::distance[p.first][p.second] + 1;
-                q.push({x, y});
-            }
-        }
-    }
-}
-
-
 void solve() {
     ll ans = 0;
-    cin >> r >> c;
-    vector<vector<char>> v(r, vector<char>(c));
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            cin >> v[i][j];
-            if (v[i][j] == 'E') {
-                q.push({i, j});
-            }
-        }
+    ll x,n; cin >> x >> n;
+    priority_queue<ll, vector<ll>, greater<ll> > q;
+    for (int i = 0; i < n; i++) {
+        ll a; cin >> a;
+        q.push(a);
     }
-    bfs(v);
 
-    for (int i = 0; i < r; ++i) {
-        for (int j = 0; j < c; ++j) {
-            if (::distance[i][j] <= min_s &&
-            v[i][j] >= '0' && v[i][j] <= '9') {
-                ans += v[i][j] - '0';
-            }
-        }
+    // debug_pq(q);
+
+    for (ll i = 1; i < n; i++) {
+        ll a = q.top(); q.pop();
+        ll b = q.top(); q.pop();
+        q.push(a + b);
+        ans += (a + b);
+
+        // debug_pq(q);
     }
 
     cout << ans << '\n';
@@ -122,8 +92,8 @@ void solve() {
 
 int main() {
     ios_base::sync_with_stdio(false);
-	cin.tie(nullptr);
-	cout.tie(nullptr);
+	cin.tie(NULL);
+	cout.tie(NULL);
 #ifdef READ_FILE
     auto f_i = freopen(FILE_I, "r", stdin);
     auto f_o = freopen(FILE_O, "w", stdout);
@@ -131,6 +101,7 @@ int main() {
     // int t; cin >> t;
     // while (t--) {
         solve();
+
     // }
 
 #ifdef READ_FILE
