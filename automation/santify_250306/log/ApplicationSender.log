@@ -1,0 +1,16 @@
+[2025-03-06 16:23:42] [ApplicationSender] Logger for ApplicationSender is starting in file mode
+[2025-03-06 16:23:42] [ApplicationSender] Logger for ApplicationSender in file mode is closed
+[2025-03-06 16:24:00] [ApplicationSender] Logger for ApplicationSender is starting in file mode
+[2025-03-06 16:24:00] [ApplicationSender] Application sender initialized.
+[2025-03-06 16:24:00] [ApplicationSender] Logger for ApplicationSender in file mode is closed
+[2025-03-06 16:44:28] [ApplicationSender] Logger for ApplicationSender is starting in file mode
+[2025-03-06 16:44:28] [ApplicationSender] Application sender initialized.
+[2025-03-06 16:44:28] [ApplicationSender] Sending application: com.webos.app.home
+[2025-03-06 16:44:29] [ApplicationSender] Sending application: com.webos.app.browser
+[2025-03-06 16:44:30] [ApplicationSender] Sending application: com.disney.disneyplus-prod.auto
+[2025-03-06 16:44:31] [ApplicationSender] Sending application: com.webos.app.discovery
+[2025-03-06 16:44:32] [ApplicationSender] Sending application: com.webos.app.browser
+[2025-03-06 16:44:32] [ApplicationSender] Logger for ApplicationSender in file mode is closed
+[2025-03-06 16:45:10] [ApplicationSender] Logger for ApplicationSender is starting in file mode
+[2025-03-06 16:45:10] [ApplicationSender] Application sender initialized.
+[2025-03-06 16:45:10] [ApplicationSender] Logger for ApplicationSender in file mode is closed
