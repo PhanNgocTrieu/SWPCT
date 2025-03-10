@@ -62,26 +62,11 @@ using namespace std;
     }
 
 typedef long long ll;
+typedef pair<ll, ll> pll;
+
 
 void solve() {
     ll ans = 0;
-    ll x,n; cin >> x >> n;
-    priority_queue<ll, vector<ll>, greater<ll> > q;
-    for (int i = 0; i < n; i++) {
-        ll a; cin >> a;
-        q.push(a);
-    }
-
-    // debug_pq(q);
-
-    for (ll i = 1; i < n; i++) {
-        ll a = q.top(); q.pop();
-        ll b = q.top(); q.pop();
-        q.push(a + b);
-        ans += (a + b);
-
-        // debug_pq(q);
-    }
 
     cout << ans << '\n';
 }
@@ -101,7 +86,6 @@ int main() {
     // int t; cin >> t;
     // while (t--) {
         solve();
-
     // }
 
 #ifdef READ_FILE
