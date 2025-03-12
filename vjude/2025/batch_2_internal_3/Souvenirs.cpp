@@ -1,0 +1,116 @@
+// https://vjudge.net/contest/690988#problem/B
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+
+#define debug_q(q) \
+    { \
+        auto q_ = q; \
+        while (!q_.empty()) { \
+            cout << q_.front() << ' '; \
+            q_.pop(); \
+        } \
+        cout << '\n'; \
+    }\
+
+#define debug_pq(pq) \
+    { \
+        cout << #pq << ": "; \
+        auto pq_ = pq; \
+        while (!pq_.empty()) { \
+            cout << pq_.top() << ' '; \
+            pq_.pop(); \
+        } \
+        cout << '\n'; \
+    }
+
+#define debug_v(v) \
+    { \
+        cout << #v << ": "; \
+        for (auto x : v) { \
+            cout << x << ' '; \
+        } \
+        cout << '\n'; \
+    }
+
+#define debug_vv(vv) \
+    { \
+        for (int i = 0; i < vv.size(); i++) { \
+            cout << "v[" << i << "]: "; \
+            for (auto x : vv[i]) { \
+                cout << x << ' '; \
+            } \
+            cout << '\n'; \
+        } \
+    }
+
+#define debug_x(x) \
+    { \
+        cout << #x << ": " << x << '\n'; \
+    }
+
+#define debug_msg(msg) \
+    { \
+        cout << #msg << '\n'; \
+    }
+
+#define debug_map(m) \
+    { \
+        for (auto it = m.begin(); it != m.end(); it++) { \
+            cout << it->first << ": " << it->second << '\n'; \
+        } \
+    }
+
+#define ans_v(v) \
+    { \
+        for (auto x : v) { \
+            cout << x << ' '; \
+        } \
+        cout << '\n'; \
+    }
+
+typedef long long ll;
+typedef pair<ll, ll> pll;
+
+
+void solve() {
+    ll n, S; cin >> n >> S;
+    vector<ll> ans(2, 0);
+    vector<ll> a(n);
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    ll l = 0, r = n;
+    while (l <= r) {
+        ll m = (l + r) / 2;
+        vector<ll> b(n);
+        for (int i = 0; i < n; i++) {
+            b[i] = a[i] + (i + 1) * m;
+        }
+        sort(b.begin(), b.end());
+        ll sum = 0;
+        for (int i = 0; i < m; i++) {
+            sum += b[i];
+        }
+        if (sum > S) {
+            r = m - 1;
+        } else {
+            l = m + 1;
+            ans[0] = m;
+            ans[1] = sum;
+        }
+    }
+    ans_v(ans);
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    // int t; cin >> t;
+    // while (t--) {
+        solve();
+    // }
+
+    return 0;
+}
