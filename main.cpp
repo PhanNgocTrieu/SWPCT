@@ -87,52 +87,29 @@ void setIO(string s) {
 	freopen((s + ".out").c_str(), "w", stdout);
 }
 
-ll n, m, s;
-vector<ll> arrivals;
+// ll n, m, s;
+// vector<ll> arrivals;
 
-bool validate(ll wait_t) {
-    // cout << "wait_t: " << wait_t << '\n';
-    ll bus = 0;
-    ll cow = 0;
-    ll lcow = 0;
-    while (cow < n) {
-        if (cow == lcow) {
-            // cout << "\tupdate bus" << '\n';
-            bus++;
-        }
+vector<ll> cows;
 
-        if (arrivals[cow] - arrivals[lcow] > wait_t) {
-            // cout << "\tarrivals[cow]: " << arrivals[cow] << " arrivals[lcow]: " << arrivals[lcow] << " > wait_t" << '\n';
-            lcow = cow;
-        }
-        else if (cow - lcow + 1 == s) {
-            // cout << "\tcow: " << cow << " lcow: " << lcow << " == s" << '\n';
-            lcow = ++cow;
-        }
-        else {
-            ++cow;
-            // cout << "\tupdate cow: " << cow << '\n';
-        }
-    }
-    // cout << "\tbus: " << bus << '\n';
-    return bus <= m;
+bool validate(ll m) {
+
 }
 
 void solve()
 {
-    cin >> n >> m >> s;
-    arrivals.resize(n);
-    for (auto& v : arrivals) {
-        cin >> v;
-    }
-    sort(arrivals.begin(), arrivals.end());
-    // debug_v(arrivals);
     ll ans = 0;
+    ll n, hales;
+    cin >> n >> hales;
+    cows.resize(n);
+    for (auto& cow : cows) {
+        cin >> cow;
+    }
+    sort(cows.begin(), cows.end());
 
-    ll l = 0, r = arrivals[n-1] - arrivals[0];
-
-    while(l < r) {
-        ll m = (l + r) / 2;
+    ll l = 0, r = 1e9;
+    while (l < r) {
+        ll mid = (l + r) / 2;
         if (validate(m)) {
             r = m;
         }
@@ -141,12 +118,13 @@ void solve()
         }
     }
 
-    cout << l << '\n';
+
+    cout << ans << '\n';
 }
 
 int main()
 {
-    setIO("convention");
+    setIO("angry");
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
