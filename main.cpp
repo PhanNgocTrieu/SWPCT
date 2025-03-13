@@ -110,11 +110,11 @@ void solve()
     ll l = 0, r = 1e9;
     while (l < r) {
         ll mid = (l + r) / 2;
-        if (validate(m)) {
-            r = m;
+        if (validate(mid)) {
+            r = mid;
         }
         else {
-            l = m + 1;
+            l = mid + 1;
         }
     }
 

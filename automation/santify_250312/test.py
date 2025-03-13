@@ -10,6 +10,7 @@ def install_app(app_name, ipk_path):
         with open("log.log", "a") as log_file:
             log_file.write(output)
 
+
     def print_output(output):
         print(output)
 

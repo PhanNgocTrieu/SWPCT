@@ -1,0 +1,180 @@
+[2025-03-13 13:42:57] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 13:42:57] [Commander] Commander initialized.
+[2025-03-13 13:42:57] [Commander] Mounting filesystem
+[2025-03-13 13:42:57] [Commander] Sending command: luna-send -i -f luna://com.webos.appInstallService/install '{"id":"com.wavve.ivi", "ipkUrl": "/mnt/lg/appstore/preinstall/com.wavve.ivi_1223782_1.0.4_1697527890244_drm.ipk", "subscribe":True}'
+[2025-03-13 13:42:57] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 13:49:41] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 13:49:41] [Commander] Commander initialized.
+[2025-03-13 13:49:41] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 13:49:48] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 13:49:48] [Commander] Commander initialized.
+[2025-03-13 13:49:48] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 13:50:12] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 13:50:12] [Commander] Commander initialized.
+[2025-03-13 13:50:12] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 13:59:59] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 13:59:59] [Commander] Commander initialized.
+[2025-03-13 13:59:59] [Commander] Mounting filesystem
+[2025-03-13 13:59:59] [Commander] Sending command: luna-send -n 1 -f luna://com.webos.service.pkgInstall/install '{"id":"com.wavve.ivi","ipkUrl":"/mnt/lg/appstore/preinstall/com.wavve.ivi_1223782_1.0.4_1697527890244_drm.ipk", "subscribe":True}'
+[2025-03-13 13:59:59] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:12:19] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:12:19] [Commander] Commander initialized.
+[2025-03-13 16:12:19] [Commander] Mounting filesystem
+[2025-03-13 16:12:19] [Commander] Sending command: luna-send -i -f luna://com.webos.appInstallService/install '{"id":"com.wavve.ivi","ipkUrl":"/mnt/lg/appstore/preinstall/com.wavve.ivi_1223782_1.0.4_1697527890244_drm.ipk", "subscribe":true}'
+[2025-03-13 16:12:19] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:13:41] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:13:41] [Commander] Commander initialized.
+[2025-03-13 16:13:41] [Commander] Mounting filesystem
+[2025-03-13 16:13:41] [Commander] Sending command: luna-send -i -f luna://com.webos.appInstallService/install '{"id":"com.wavve.ivi","ipkUrl":"/mnt/lg/appstore/preinstall/com.wavve.ivi_1223782_1.0.4_1697527890244_drm.ipk", "subscribe":true}'
+[2025-03-13 16:13:41] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:14:09] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:14:09] [Commander] Commander initialized.
+[2025-03-13 16:14:09] [Commander] Mounting filesystem
+[2025-03-13 16:14:09] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:15:27] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:15:27] [Commander] Commander initialized.
+[2025-03-13 16:15:27] [Commander] Mounting filesystem
+[2025-03-13 16:15:27] [Commander] Sending command: luna-send -i -f luna://com.webos.appInstallService/install '{"id":"com.wavve.ivi","ipkUrl":"/mnt/lg/appstore/preinstall/com.wavve.ivi_1223782_1.0.4_1697527890244_drm.ipk", "subscribe":true}'
+[2025-03-13 16:15:27] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:17:12] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:17:12] [Commander] Commander initialized.
+[2025-03-13 16:17:12] [Commander] Mounting filesystem
+[2025-03-13 16:17:12] [Commander] Sending command: luna-send -i -f luna://com.webos.appInstallService/install '{"id":"com.wavve.ivi","ipkUrl":"/mnt/lg/appstore/preinstall/com.wavve.ivi_1223782_1.0.4_1697527890244_drm.ipk", "subscribe":true}'
+[2025-03-13 16:17:12] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:17:32] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:17:32] [Commander] Commander initialized.
+[2025-03-13 16:17:32] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:18:46] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:18:46] [Commander] Commander initialized.
+[2025-03-13 16:18:46] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:18:54] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:18:54] [Commander] Commander initialized.
+[2025-03-13 16:18:54] [Commander] Mounting filesystem
+[2025-03-13 16:18:54] [Commander] Sending command: luna-send -i -f luna://com.webos.appInstallService/install '{"id":"com.wavve.ivi","ipkUrl":"/mnt/lg/appstore/preinstall/com.wavve.ivi_1223782_1.0.4_1697527890244_drm.ipk", "subscribe":true}'
+[2025-03-13 16:18:54] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:30:18] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:30:18] [Commander] Commander initialized.
+[2025-03-13 16:30:18] [Commander] Mounting filesystem
+[2025-03-13 16:30:18] [Commander] Sending command: luna-send -i -f luna://com.webos.appInstallService/install '{"id":"com.wavve.ivi","ipkUrl":"/mnt/lg/appstore/preinstall/com.wavve.ivi_1223782_1.0.4_1697527890244_drm.ipk", "subscribe":true}'
+[2025-03-13 16:30:18] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:34:52] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:34:52] [Commander] Commander initialized.
+[2025-03-13 16:34:52] [Commander] Mounting filesystem
+[2025-03-13 16:34:52] [Commander] Sending command: luna-send -i -f luna://com.webos.appInstallService/install '{"id":"com.wavve.ivi","ipkUrl":"/mnt/lg/appstore/preinstall/com.wavve.ivi_1223782_1.0.4_1697527890244_drm.ipk", "subscribe":true}'
+[2025-03-13 16:34:52] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:35:45] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:35:45] [Commander] Commander initialized.
+[2025-03-13 16:35:45] [Commander] Mounting filesystem
+[2025-03-13 16:35:45] [Commander] Sending command: luna-send -i -f luna://com.webos.appInstallService/install '{"id":"com.wavve.ivi","ipkUrl":"/mnt/lg/appstore/preinstall/com.wavve.ivi_1223782_1.0.4_1697527890244_drm.ipk", "subscribe":true}'
+[2025-03-13 16:35:45] [Commander] stdout_data: []
+[2025-03-13 16:35:45] [Commander] stderr_data: ['/bin/sh: line 1: luna-send: command not found']
+[2025-03-13 16:35:45] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:53:42] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:53:42] [Commander] Commander initialized.
+[2025-03-13 16:53:42] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:54:02] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:54:02] [Commander] Commander initialized.
+[2025-03-13 16:54:02] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 16:54:09] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 16:54:09] [Commander] Commander initialized.
+[2025-03-13 16:54:09] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:32:05] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:32:05] [Commander] Commander initialized.
+[2025-03-13 17:32:05] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:32:30] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:32:30] [Commander] Commander initialized.
+[2025-03-13 17:32:30] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:32:49] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:32:49] [Commander] Commander initialized.
+[2025-03-13 17:32:49] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:33:15] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:33:15] [Commander] Commander initialized.
+[2025-03-13 17:33:15] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:34:07] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:34:07] [Commander] Commander initialized.
+[2025-03-13 17:34:07] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:35:06] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:35:06] [Commander] Commander initialized.
+[2025-03-13 17:35:06] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:35:40] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:35:40] [Commander] Commander initialized.
+[2025-03-13 17:35:40] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:42:34] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:42:34] [Commander] Commander initialized.
+[2025-03-13 17:42:34] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:50:46] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:50:46] [Commander] Commander initialized.
+[2025-03-13 17:50:46] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:53:36] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:53:36] [Commander] Commander initialized.
+[2025-03-13 17:53:36] [Commander] Mounting filesystem
+[2025-03-13 17:53:36] [Commander] Sending command: ls -l
+[2025-03-13 17:53:36] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:54:42] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:54:42] [Commander] Commander initialized.
+[2025-03-13 17:54:42] [Commander] Mounting filesystem
+[2025-03-13 17:54:42] [Commander] Sending command: ls -l
+[2025-03-13 17:54:42] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:55:59] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:55:59] [Commander] Commander initialized.
+[2025-03-13 17:55:59] [Commander] Mounting filesystem
+[2025-03-13 17:55:59] [Commander] Sending command: ls -l
+[2025-03-13 17:55:59] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:56:07] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:56:07] [Commander] Commander initialized.
+[2025-03-13 17:56:07] [Commander] Sending command: ls -l
+[2025-03-13 17:56:07] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 17:58:24] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 17:58:24] [Commander] Commander initialized.
+[2025-03-13 17:58:24] [Commander] Sending command: ls -l
+[2025-03-13 17:58:24] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:06:25] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:06:25] [Commander] Commander initialized.
+[2025-03-13 18:06:25] [Commander] Sending command: ls -l
+[2025-03-13 18:06:25] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:06:33] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:06:33] [Commander] Commander initialized.
+[2025-03-13 18:06:33] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:06:54] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:06:54] [Commander] Commander initialized.
+[2025-03-13 18:06:54] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:29:39] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:29:39] [Commander] Commander initialized.
+[2025-03-13 18:29:39] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:31:59] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:31:59] [Commander] Commander initialized.
+[2025-03-13 18:31:59] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:35:09] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:35:09] [Commander] Commander initialized.
+[2025-03-13 18:35:09] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:35:52] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:35:52] [Commander] Commander initialized.
+[2025-03-13 18:35:52] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:36:09] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:36:09] [Commander] Commander initialized.
+[2025-03-13 18:36:09] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:36:23] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:36:23] [Commander] Commander initialized.
+[2025-03-13 18:36:23] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:36:28] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:36:28] [Commander] Commander initialized.
+[2025-03-13 18:36:28] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:47:10] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:47:10] [Commander] Commander initialized.
+[2025-03-13 18:47:10] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:51:53] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:51:53] [Commander] Commander initialized.
+[2025-03-13 18:51:53] [Commander] Sending command: ls -l
+[2025-03-13 18:51:53] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:52:30] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:52:30] [Commander] Commander initialized.
+[2025-03-13 18:52:30] [Commander] Sending command: ls -l
+[2025-03-13 18:52:30] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:52:46] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:52:46] [Commander] Commander initialized.
+[2025-03-13 18:52:46] [Commander] Logger for Commander in file mode is closed
+[2025-03-13 18:53:59] [Commander] Logger for Commander is starting in file mode
+[2025-03-13 18:53:59] [Commander] Commander initialized.
+[2025-03-13 18:53:59] [Commander] Mounting filesystem
+[2025-03-13 18:53:59] [Commander] Sending command: luna-send -i -f luna://com.webos.appInstallService/install '{"id":"com.wavve.ivi","ipkUrl":"/mnt/lg/appstore/preinstall/com.wavve.ivi_1223782_1.0.4_1697527890244_drm.ipk", "subscribe":true}'
+[2025-03-13 18:53:59] [Commander] Logger for Commander in file mode is closed
