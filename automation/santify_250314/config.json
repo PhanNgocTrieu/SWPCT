@@ -1,0 +1,9 @@
+{
+    "id": "santify",
+    "name": "Santify",
+    "description": "Santify is a simple tool to santize your data",
+    "VS": {
+        "version": "http://json-schema.org/draft-07/schema#"
+    },
+    "helper": "gcc"
+}
