@@ -88,38 +88,13 @@ void setIO(string s) {
 }
 
 // ll n, m, s;
-// vector<ll> arrivals;
-
+vector<ll> arr;
 vector<ll> cows;
 
-bool validate(ll m) {
-
-}
 
 void solve()
 {
-    ll ans = 0;
-    ll n, hales;
-    cin >> n >> hales;
-    cows.resize(n);
-    for (auto& cow : cows) {
-        cin >> cow;
-    }
-    sort(cows.begin(), cows.end());
 
-    ll l = 0, r = 1e9;
-    while (l < r) {
-        ll mid = (l + r) / 2;
-        if (validate(mid)) {
-            r = mid;
-        }
-        else {
-            l = mid + 1;
-        }
-    }
-
-
-    cout << ans << '\n';
 }
 
 int main()
