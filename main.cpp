@@ -1,4 +1,4 @@
-// https://vjudge.net/contest/690988#problem/B
+// https://vjudge.net/contest/690982#problem/F
 #include <bits/stdc++.h>
 #include <iostream>
 using namespace std;
@@ -99,7 +99,7 @@ void solve()
 
 int main()
 {
-    setIO("angry");
+    setIO("traffic");
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
