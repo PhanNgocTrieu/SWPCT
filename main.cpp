@@ -87,7 +87,7 @@ void setIO(string s) {
 	freopen((s + ".out").c_str(), "w", stdout);
 }
 
-// ll n, m, s;
+ll n, m, s;
 vector<ll> arr;
 vector<ll> cows;
 
@@ -99,7 +99,7 @@ void solve()
 
 int main()
 {
-    setIO("traffic");
+    setIO("blocks");
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
