@@ -11,7 +11,23 @@ void setIO(const string& file) {
 }
 
 void solve() {
+    ll n, m, k, d;
+    cin >> n >> m >> k >> d;
+    multiset<pair<ll, ll>> s;
+    vector<vector<ll>> rivers(n + 1, vector<ll>(m + 1));
+    for (ll i = 0; i < n; i++) {
+        for (ll j = 0; j < m; j++) {
+            cin >> rivers[i][j];
+        }
+    }
 
+
+    for (int i = 0; i < n; ++i) {
+        vector<ll> dp(m);
+        for (int j = 1; j < m; ++j) {
+
+        }
+    }
 }
 
 int main() {
