@@ -1,51 +1,48 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
 using namespace std;
-using ll = long long;
-
-#define print_set(s) for (auto x : s) cout << x << " "; cout << endl;
-#define print_vec(v) for (auto x : v) cout << x << " "; cout << endl;
-#define print_pair_vec(v) for (auto x : v) cout << x.first << " " << x.second << endl;
-void setIO(const string& file) {
-    freopen((file + ".in").c_str(), "r", stdin);
-    freopen((file + ".out").c_str(), "w", stdout);
-}
-
-void solve() {
-    ll n, m, k, d;
-    cin >> n >> m >> k >> d;
-    vector<vector<ll>> rivers(n + 1, vector<ll>(m + 1));
-    vector<ll> s_s;
-    for (ll i = 0; i < n; i++) {
-        for (ll j = 1; j < m; j++) {
-            cin >> rivers[i][j];
-        }
-    }
-
-
-    for (ll i = 0; i < n; ++i) {
-        multiset<ll> s;
-        vector<ll> dp(m);
-        ll min_val = INT_MAX;
-        dp[0] = 1;
-        for (ll j = 1; j < m; ++j) {
-            if (s.size() >= d) {
-                s.erase(s.find(rivers[i][j - d]));
-            }
-
-            dp[j] = *s.begin() + 1 + rivers[i][j];
-            s.insert(rivers[i][j] + 1);
-        }
-    }
-
-
-
-}
 
 int main() {
-    // setIO("circlecross");
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    solve();
+    int N, M;
+    cin >> N >> M;
+
+    // Create a vector of buckets for jobs based on waiting days
+    vector<vector<int>> jobs(M + 1);
+
+    for (int i = 0; i < N; i++) {
+        int Ai, Bi;
+        cin >> Ai >> Bi;
+        if (Ai <= M) {
+            jobs[Ai].push_back(Bi); // Add reward to the corresponding day bucket
+        }
+    }
+
+    // Max-heap to store rewards
+    priority_queue<int> maxHeap;
+    long long totalReward = 0;
+
+    // Iterate from the last day to the first day
+    for (int day = M; day >= 1; day--) {
+        // Add all jobs available on this day to the max-heap
+        int stillAvailable = day;
+        for (int reward : jobs[day]) {
+            if (stillAvailable >= day) {
+                maxHeap.push(reward);
+                stillAvailable--;
+            }
+        }
+
+        // Take the job with the maximum reward (if available)
+        if (!maxHeap.empty()) {
+            totalReward += maxHeap.top();
+            maxHeap.pop();
+        }
+    }
+
+    // Output the total maximum reward
+    cout << totalReward << endl;
+
     return 0;
 }
