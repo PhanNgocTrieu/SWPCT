@@ -18,44 +18,45 @@ ll max_time = 0;
 
 void solve() {
     cin >> N;
-    vector<ll> expireTimes(N);
-    vector<ll> scores(N);
+    // vector<ll> expireTimes(N);
+    // vector<ll> scores(N);
+    vector<pair<ll, ll>> a(N);
     for (int i = 0; i < N; ++i) {
-        cin >> expireTimes[i];
-        max_time = max(max_time, expireTimes[i]);
+        cin >> a[i].first;
     }
 
     for (int i = 0; i < N; ++i) {
-        cin >> scores[i];
+        cin >> a[i].second;
     }
 
-    map<ll, priority_queue<ll>> mq;
-    for (int i = 0; i < N; ++i) {
-        mq[expireTimes[i]].push(scores[i]);
-    }
+    sort(a.begin(), a.end());
 
-    ll ans = 0;
-    // cout << "max_time: " << max_time << endl;
-    for (int i = max_time; i > 0; --i) {
-        ll m_v = 0;
+    priority_queue<ll> pq;
 
-        for (auto itr = mq.begin(); itr != mq.end(); ++itr) {
-            if (itr->first < i) {
-                continue;
-            }
+    ll i = N - 1;
+    ll ans = 0, k = a[N-1].first;
 
-            if (itr->second.empty()) {
-                continue;
-            }
+    while (k > 0) {
 
-            auto g = itr->second.top();
-            itr->second.pop();
-            // cout << "top: " << g << endl;
-            m_v = max(m_v, g);
+        while (i >= 0 && a[i].first == k) {
+            pq.push(a[i].second);
+            i--;
         }
-        ans += m_v;
-    }
 
+        if (!pq.empty()) {
+            ans += pq.top();
+            pq.pop();
+            --k;
+        }
+        else {
+            if (i >= 0) {
+                k = a[i].first;
+            }
+            else {
+                break;
+            }
+        }
+    }
     cout << ans << "\n";
 }
 
