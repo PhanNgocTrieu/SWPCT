@@ -1,75 +1,95 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
 
-// #define SLOW_ONE
-#define fastio ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define ll long long
 
-// This would be O(n^2) solution
-ll n, x, y;
-vector<ll> a(n);
-
-bool valid(ll v, ll x, ll y) {
-	if (v >= x && v <= y) {
-		return true;
-	}
-	return false;
+void setIO(const string &name) {
+    if (freopen((name + ".in").c_str(), "r", stdin) == NULL) {
+        cout << "Error opening input file" << endl;
+        exit(1);
+    }
+    if (freopen((name + ".out").c_str(), "w", stdout) == NULL) {
+        cout << "Error opening output file" << endl;
+        exit(1);
+    }
 }
 
-ll calLessThanX(ll lx, ll sum) {
-	ll count = 0;
-	int j = 0;
-	for (int i = n - 1; i >= 0; --i) {
-		while (j < n && sum - a[i] - a[j] >= lx) {
-			j++;
-		}
-		count += (n - j);
-	}
+ll count_lessthan(const vector<ll>& a, ll lx, ll sum) {
+    ll count = 0;
+    ll n = a.size();
+    int j = 0;
+    // If (sum - a[i] - a[j] < lx, then all elements from a[j] to a[n-1] are also less than lx
+    for (int i = n - 1; i >= 0; --i) {
+        while (j < n && (sum - a[i] - a[j]) >= lx) {
+            j++;
+        }
+        count += (n - j);
+    }
 
-	for (int i = 0; i < n; i++) {
-		if (sum - a[i] - a[i] < lx) {
-			count--;
-		}
-	}
-	return count;
+    // cout << "[before remove duplicated] count: " << count << endl;
+    // We need to remove the pairs (a[i], a[i]) from the count
+    for (int i = 0; i < n; ++i) {
+        if ((sum - a[i] - a[i]) < lx) {
+            count--;
+        }
+    }
+
+    // cout << "[after remove duplicated] count: " << count << endl;
+    // Since we counted each pair (a[i], a[j]) twice, we need to divide the count by 2
+    return count / 2;
 }
 
 void solve() {
-	cin >> n >> x >> y;
-	for (ll i = 0; i < n; i++) {
-		cin >> a[i];
-	}
-	ll sum = 0;
-	for (auto i : a) {
-		sum += i;
-	}
-#ifdef SLOW_ONE
-	ll count = 0;
-	for (int j = n - 1; j >= 0; --j) {
-		for (int k = 0; k < j; ++k) {
-			if (valid( (sum - a[j] - a[k]), x, y)) {
-				count++;
-			}
-		}
-	}
-	cout << count << endl;
+    ll n, x, y;
+    cin >> n >> x >> y;
+    ll sum = 0;
+    vector<ll> a(n);
+    for (auto i = 0; i < n; i++) {
+        cin >> a[i];
+        sum += a[i];
+    }
+
+    sort(a.begin(), a.end());
+
+    ll lessthanY = count_lessthan(a, y + 1, sum);
+    ll lessthanX = count_lessthan(a, x, sum);
+
+    // cout << "lesserY: " << lessthanY << endl;
+    // cout << "greaterX: " << lessthanX << endl;
+    // cout << "sum: " << (lessthanY - lessthanX) << endl;
+
+#ifdef TLE
+    for (ll l = 0; l < n; ++l) {
+        ll r = n - 1;
+        while (l < r) {
+            ll sum_ = sum - a[l] - a[r];
+            if (sum_ > y) {
+                break;
+            }
+            if (sum_ >= x && sum_ <= y) {
+                ans++;
+            }
+            r--;
+        }
+    }
 #endif
-	sort(a.begin(), a.end());
-	ll lessY = calLessThanX(y + 1, sum);
-	ll lessX = calLessThanX(x, sum);
-	cout << "lessY: " << lessY << " lessX: " << lessX << endl;
-	cout << lessY - lessX << endl;
+    cout << (lessthanY - lessthanX) << '\n';
 }
+
 
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	cout.tie(0);
+    setIO("lifeguards");
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
 
-	int t; cin >> t;
-	while (t--) {
-		solve();
-	}
+    ll t;
+    cin >> t;
+    while (t--)
+        solve();
 
-	return 0;
+    return 0;
 }
+
+
+

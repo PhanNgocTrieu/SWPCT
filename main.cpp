@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
 #define ll long long
 
 void setIO(const string &name) {
@@ -16,10 +15,11 @@ void setIO(const string &name) {
 }
 
 void solve() {
+
 }
 
 int main() {
-    // setIO("lifeguards");
+    setIO("lifeguards");
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
