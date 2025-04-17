@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+    margin-top: 70px; /* To avoid content being hidden behind the navbar */
+    background-color: #da3939;
+}
+
+.nav-size {
+    width: 80%;
+    margin: 0 auto;
+    position: fixed;
+    background-color: antiquewhite;
+}
