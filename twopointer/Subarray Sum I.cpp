@@ -1,53 +1,59 @@
-/*
-	https://cses.fi/problemset/task/1660/
-*/
-//BeginCodeSnip{C++ Short Template}
-#include <bits/stdc++.h> // see /general/running-code-locally
+#include <bits/stdc++.h>
 using namespace std;
 
-using ll = long long;
+#define ll long long
 
-using vi = vector<int>;
-#define pb push_back
-#define all(x) begin(x), end(x)
-#define sz(x) (int) (x).size()
-
-using pi = pair<int,int>;
-#define f first
-#define s second
-#define mp make_pair
-
-void setIO(string name = "") {
-	cin.tie(0)->sync_with_stdio(0); // see /general/fast-io
-	if (sz(name)) {
-		freopen((name + ".in").c_str(), "r", stdin); // see /general/input-output
-		freopen((name + ".out").c_str(), "w", stdout);
-	}
+void setIO(const string &name) {
+    if (freopen((name + ".in").c_str(), "r", stdin) == NULL) {
+        cout << "Error opening input file" << endl;
+        exit(1);
+    }
+    if (freopen((name + ".out").c_str(), "w", stdout) == NULL) {
+        cout << "Error opening output file" << endl;
+        exit(1);
+    }
 }
-//EndCodeSnip
 
-int main() {
-	setIO();
-	int n, t, ans = 0;
-	cin >> n >> t;
-	vi nums(n);
-	for (int i = 0; i < n; i++) { cin >> nums[i]; }
+void solve()
+{
+    ll n, x;
+    cin >> n >> x;
+    vector<ll> a(n);
+    ll ans = 0;
+    for (ll i = 0; i < n; i++) {
+        cin >> a[i];
+    }
 
-	int left = 0, right = 0, cur = 0;
-	while (left < n && right < n) {
-		// Finding the maximum right for which cur is less than t.
-		while (right < n) {
-			cur += nums[right++];
-            if (cur == t) {
+    ll l = 0;
+    ll r = 0;
+    ll s = 0;
+    while (l < n && r < n) {
+        while (r < n) {
+            s += a[r++];
+            if (s == x) {
                 ans++;
             }
-			else if (cur > t) {
-				cur -= nums[--right];
-				break;
-			}
-		}
-		cur -= nums[left++];
-	}
+            else if (s > x) {
+                s -= a[--r];
+                break;
+            }
+        }
+        s -= a[l++];
+    }
 
-	cout << ans;
+    cout << ans << endl;
+}
+
+int main() {
+    // setIO("lifeguards");
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    // ll t;
+    // cin >> t;
+    // while (t--)
+        solve();
+
+    return 0;
 }
