@@ -14,9 +14,25 @@ void setIO(const string &name) {
     }
 }
 
-void solve() {
-    ll n, m;
-    cin >> n >> m;
+void solve()
+{
+    int n;
+    cin>>n;
+    vector<ll> a(n);
+    for (int i = 0; i < n; ++i)
+    {
+        cin>>a[i];
+    }
+    int ans = 0;
+    for (int i = 1; i < n; ++i)
+    {
+        if (a[i] < a[i - 1])
+        {
+            ans = max(ans, int(1 + log2(a[i - 1] - a[i])));
+            a[i] = a[i - 1];
+        }
+    }
+    cout << ans << endl;
 }
 
 int main() {
@@ -25,9 +41,9 @@ int main() {
     cin.tie(0);
     cout.tie(0);
 
-    // ll t;
-    // cin >> t;
-    // while (t--)
+    ll t;
+    cin >> t;
+    while (t--)
         solve();
 
     return 0;
