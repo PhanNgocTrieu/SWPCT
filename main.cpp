@@ -16,16 +16,10 @@ void setIO(const string &name) {
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    vector<pair<ll, ll>> v(n);
-    for (ll i = 0; i < n; i++) {
-        cin >> v[i].first >> v[i].second;
-    }
 }
 
 int main() {
-    // setIO("lifeguards");
+    setIO("pairup");
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
