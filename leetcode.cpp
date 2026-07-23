@@ -3,39 +3,34 @@
 using namespace std;
 
 class Solution {
-    public:
-        vector<int> pivotArray(vector<int>& nums, int pivot) {
-            vector<int> pre;
-            vector<int> sur;
-            vector<int> piv;
-            bool found = false;
-            for (auto n : nums) {
-                if (n < pivot) {
-                    pre.push_back(n);
-                }
-                else if (n > pivot) {
-                    sur.push_back(n);
-                }
-                else {
-                    found = true;
-                    piv.push_back(n);
-                }
+public:
+    int numberOfArithmeticSlices(vector<int>& nums) {
+
+        int n = nums.size();
+
+        if (n < 3)
+            return 0;
+
+        vector<int> dp(n, 0);
+
+        int answer = 0;
+
+        for (int i = 2; i < n; i++)
+        {
+            if (nums[i] - nums[i - 1] ==
+                nums[i - 1] - nums[i - 2])
+            {
+                dp[i] = dp[i - 1] + 1;
             }
 
-            if (found) {
-                for (auto p : piv) {
-                    pre.push_back(p);
-                }
-                for (auto s : sur) {
-                    pre.push_back(s);
-                }
-            }
-            return pre;
+            answer += dp[i];
         }
+
+        return answer;
+    }
 };
 
-
-
 int main() { 
-
+    Solution s;
+    return 0;
 }
