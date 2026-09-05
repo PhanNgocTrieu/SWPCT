@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(swcpt)
-add_executable(swcpt main.cpp)
+add_executable(swcpt main.cpp
+    leetcode/3904.cpp)
 
 set(CMAKE_CXX_COMPILER "g++")
 set(CMAKE_CXX_STANDARD 11)
